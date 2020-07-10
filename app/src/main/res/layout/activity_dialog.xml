@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="—— 原生Dialog ——" />
+
+        <Button
+            android:id="@+id/btnSimple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="原生对话框" />
+
+        <Button
+            android:id="@+id/btnList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="列表对话框" />
+
+        <Button
+            android:id="@+id/btnSingleCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="单选对话框" />
+
+        <Button
+            android:id="@+id/btnMultiCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="多选对话框" />
+
+        <Button
+            android:id="@+id/btnRawLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loading对话框" />
+
+        <Button
+            android:id="@+id/btnRawProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Progress对话框" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="—— 半自定义Dialog(修改布局、大小等) ——" />
+
+        <Button
+            android:id="@+id/btnHalfCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="半自定义对话框" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="—— 自定义Dialog ——" />
+
+        <Button
+            android:id="@+id/btnAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="警告对话框" />
+
+        <Button
+            android:id="@+id/btnQuery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="询问对话框" />
+
+        <Button
+            android:id="@+id/btnLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="loading对话框" />
+
+        <Button
+            android:id="@+id/btnProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="progress对话框" />
+
+        <Button
+            android:id="@+id/btnPicDialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="图片对话框" />
+
+        <Button
+            android:id="@+id/btnAddPic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="添加图片对话框" />
+    </LinearLayout>
+</ScrollView>

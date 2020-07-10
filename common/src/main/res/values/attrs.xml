@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="ProgressBar">
+        <attr name="max" format="integer" />
+        <attr name="backgroundColor" format="color" />
+        <attr name="foregroundColor" format="color" />
+
+        <attr name="type1" format="enum">
+            <enum name="ABOVE" value="0" />
+            <enum name="END" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>

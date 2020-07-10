@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="PrimaryTextSize">16dp</dimen>
+    <dimen name="SecondTextSize">14dp</dimen>
+    <dimen name="ThirdTextSize">12dp</dimen>
+
+    <dimen name="DialogConner">8dp</dimen>
+    <dimen name="CommonBgConner">8dp</dimen>
+</resources>
