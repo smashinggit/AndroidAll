@@ -2,6 +2,7 @@ package com.cs.common.util
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -28,6 +29,18 @@ fun Fragment.dp2px(dp: Float): Int {
 fun View.dp2px(dp: Float): Int {
     val density = context.resources.displayMetrics.density
     return (dp * density + 0.5f).toInt()
+}
+
+fun Context.log(msg: String) {
+    Log.e("tag", msg)
+}
+
+fun Fragment.log(msg: String) {
+    Log.e("tag", msg)
+}
+
+fun View.log(msg: String) {
+    Log.e("tag", msg)
 }
 
 fun Context.toast(msg: String) {

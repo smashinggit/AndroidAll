@@ -3,7 +3,6 @@ package com.cs.androidall
 import android.os.Bundle
 import com.cs.common.base.BaseActivity
 import com.cs.common.util.startActivity
-import com.cs.common.util.toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

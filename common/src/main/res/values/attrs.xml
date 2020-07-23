@@ -6,7 +6,7 @@
         <attr name="backgroundColor" format="color" />
         <attr name="foregroundColor" format="color" />
 
-        <attr name="type1" format="enum">
+        <attr name="type">
             <enum name="ABOVE" value="0" />
             <enum name="END" value="1" />
         </attr>

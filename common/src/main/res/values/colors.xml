@@ -3,6 +3,8 @@
 
     <color name="WHITE">#FFFFFF</color>
     <color name="BLACK">#000000</color>
+    <color name="GRAY">#FAFAFA</color>
+    <color name="GRAY_PRESSED">#F0F0F0</color>
     <color name="TRANSPARENT">#00000000</color>
 
 
