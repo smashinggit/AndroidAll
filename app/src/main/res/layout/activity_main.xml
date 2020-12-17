@@ -13,4 +13,9 @@
         android:layout_height="wrap_content"
         android:text="Dialog对话框" />
 
+    <com.cs.androidall.view.MovingLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="#ff0" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>

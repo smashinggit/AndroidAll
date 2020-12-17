@@ -1,3 +1,4 @@
-include ':common'
 rootProject.name='AndroidAll'
 include ':app'
+include ':common'
+include ':lib_base'

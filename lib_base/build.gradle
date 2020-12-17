@@ -1,0 +1,153 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+//        applicationId "com.cmcc.test"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+
+}
+
+ext.myVersion = 1
+
+task hello {
+    doLast {
+        println 'hello world'
+        println("project.name: ${project.name}")
+        println("getRootProject().name: ${getRootProject().name}")
+        setProperty("myVersion", 2)
+        println("myVersion: $myVersion")
+
+    }
+}
+
+task("copyTask", type: Copy) {
+    File src = file("src/main/java")
+    from(src)
+    into(buildDir)
+
+    include('**/*.txt', '**/*.xml', '**/*.properties')
+}
+
+tasks.create("copy", Copy) {
+    File src = file("src/main/java")
+    from(src)
+    into(buildDir)
+}
+
+task copyReportsDirForArchiving(type: Copy) {
+    from "$buildDir/kotlin"
+    into "$buildDir/kotlinCopy"
+}
+
+task copyReportsDirForArchiving2(type: Copy) {
+    from("$buildDir") {
+        include("kotlin/**")
+    }
+    into "$buildDir/kotlinCopy"
+}
+
+//Archiving a directory as a ZIP
+task packageDistribution(type: Zip) {
+    archiveFileName = "my-distribution.zip"
+    destinationDirectory = file("$buildDir/zip")
+
+    from "$buildDir/tmp/kotlin-classes/debug"
+}
+
+task packageDistribution2(type: Zip) {
+    archiveFileName = "my-distribution2.zip"
+    destinationDirectory = file("$buildDir/zip")
+
+    from "$buildDir/tmp/kotlin-classes/debug"
+    into "classes"
+}
+
+task unpackFiles(type: Copy) {
+    from zipTree("libs/test.jar")
+    into "$buildDir/jar"
+}
+
+
+//打jar包
+String sdkName = "sdk"
+String sdkDir = "$buildDir/sdk"
+
+task deleteJar(type: Delete) {
+    delete sdkDir + "/" + sdkName + ".jar"
+}
+
+task makeJar(type: Jar) {
+    deleteJar
+
+    setArchivesBaseName sdkName
+    destinationDir file(sdkDir)
+
+//    from("src/main/java")
+    from(zipTree("$buildDir/intermediates/aar_main_jar/release/classes.jar"))
+
+    //第三方的jar包
+//    from(zipTree("libs/test.jar"))
+}
+
+
+//jar的名字结构： [archiveBaseName]-[archiveAppendix]-[archiveVersion]-[archiveClassifier].[archiveExtension]
+//注意：compile 只能打包在上面的 dependencies 配置中使用 compile 的库，但是compile又报过时
+//目前已有的解决方法，但是未能找到特别优雅的方案
+// https://stackoverflow.com/questions/47910578/not-able-to-copy-configurations-dependencies-after-upgrading-gradle-plugin-for-a
+task makeUberJar(type: Jar) {
+    setArchivesBaseName sdkName
+    archiveClassifier = 'uber'
+    destinationDir file(sdkDir)
+
+    from("src/main/java")
+
+    from {
+        configurations.compile.collect {
+            println("${it.name}")
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+
+task copyTaskWithPatterns (type: Copy) {
+    from 'src/main/webapp'
+    into "$buildDir/explodedWar"
+    include '**/*.html'
+    include '**/*.jsp'
+    exclude { FileTreeElement details ->
+        details.file.name.endsWith('.html') &&
+                details.file.text.contains('DRAFT')
+    }
+}

@@ -24,7 +24,7 @@ ViewPropertyAnimator viewPropertyAnimator = view.animate()
 ## 原理
 
 ViewPropertyAnimator 内部利用ValueAnimator实现动画，
-在 ValueAnimator 的每一帧的回调中，取得 VauleAnimator 机制计算出来的动画进度值，
+在 ValueAnimator 的每一帧的回调中，取得 ValueAnimator 机制计算出来的动画进度值，
 然后自行进行 ui 操作来达到动画效果。
 
 那么，到这里，整个流程就已经梳理出来了，我们先来梳理一下目前的信息：
