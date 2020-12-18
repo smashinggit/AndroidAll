@@ -1,4 +1,4 @@
-package com.cs.test;
+package com.cs.test.java;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -16,7 +16,7 @@ class ReflectTest {
 //        Class userClass2 = user.getClass();
 
         try {
-            Class<?> userClass = Class.forName("com.cs.test.User");
+            Class<?> userClass = Class.forName("com.cs.test.java.User");
 
             //通过Class对象创建实例对象
             User user = ((User) userClass.getConstructor(String.class, int.class).newInstance("李四", 16));

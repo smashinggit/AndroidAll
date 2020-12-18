@@ -33,7 +33,7 @@ java 代码运行时，需要首先将 java 代码编译成二进制字节码，
 - 通过完成类名路径获取Class
 
   try {
-      Class<?> userClass3 = Class.forName("com.cs.test.User");
+      Class<?> userClass3 = Class.forName("com.cs.test.java.User");
   } catch (Exception e) {
       e.printStackTrace();
   }
@@ -42,7 +42,7 @@ java 代码运行时，需要首先将 java 代码编译成二进制字节码，
 # 获取属性、字段、及相关调用
 ```
 
-              Class<?> userClass = Class.forName("com.cs.test.User");
+              Class<?> userClass = Class.forName("com.cs.test.java.User");
   
               //通过Class对象创建实例对象
               User user = ((User) userClass.getConstructor(String.class, int.class).newInstance("李四", 16));

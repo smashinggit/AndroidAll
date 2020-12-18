@@ -1,4 +1,4 @@
-package com.cs.test;
+package com.cs.test.java;
 
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Documented;

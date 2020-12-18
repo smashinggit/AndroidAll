@@ -1,4 +1,4 @@
-package com.cs.test;
+package com.cs.test.java;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +29,7 @@ import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 class ThreadTest {
     private static ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -59,6 +60,9 @@ class ThreadTest {
 //        productorAndConsumer1();
 //        productorAndConsumer2();
         productorAndConsumer3();
+
+
+        ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
     }
 
 

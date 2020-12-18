@@ -117,7 +117,7 @@ LockSupport.parkUntil(time) 方法之后所处的状态
 sleepThread.interrupt()
 ```
 
-1. interrupt()
+- interrupt()
 如果线程处于阻塞状态，即调用了wait、join、sleep等方法时，调用此方法会清除中断标志位并抛出InterruptedException
 ,**否则不会清除中断标志位**
 
@@ -149,7 +149,7 @@ public static native void sleep(long millis) 方法是 Thread 的静态方法
 
 1. sleep()方法是Thread的静态方法，而wait()是Object实例方法
 
-2. wait()方法必须要在同步方法或者同步块中调用，也就是必须已经获得对象锁。
+2. **wait()方法必须要在同步方法或者同步块中调用，也就是必须已经获得对象锁**
    而sleep()方法没有这个限制可以在任何地方种使用
    
 3. wait()方法会释放占有的对象锁，使得该线程进入等待池中，等待下一次获取资源
@@ -276,8 +276,8 @@ JMM其实是在遵循一个基本原则：只要不改变程序的执行结果�
 
 ## as-if-serial VS happens-before
 
-1. as-if-serial语义保证单线程内程序的执行结果不被改变
-   happens-before关系保证正确同步的多线程程序的执行结果不被改变
+1. as-if-serial语义保证**单线程内程序的执行结果不被改变**
+   happens-before关系保证**正确同步的多线程程序的执行结果不被改变**
    
 2. as-if-serial语义给编写单线程程序的程序员创造了一个幻境：单线程程序是按程序的顺序来执行的
    happens-before关系给编写正确同步的多线程程序的程序员创造了一个幻境：
@@ -331,7 +331,7 @@ synchronized(任意object对象) 锁住的是 object示例对象
 
 ### synchronized的实现原理
 
-执行同步代码块后首先要先执行monitorenter指令，退出的时候monitorexit指令
+执行同步代码块后首先要先执行 monitorenter 指令，退出的时候 monitorexit 指令
 通过分析之后可以看出，使用Synchronized进行同步，其关键就是**必须要对对象的监视器monitor进行获取,
 当线程获取monitor后才能继续往下执行，否则就只能等待**
 而这个获取的过程是互斥的，即**同一时刻只有一个线程能够获取到monitor**
@@ -416,7 +416,7 @@ V和O相同时，也就是说旧值和内存中实际的值相同表明该值没
 在同步的时候是获取对象的monitor,即获取到对象的锁。
 那么对象的锁怎么理解？无非就是类似对对象的一个标志，那么这个标志就是存放在Java对象的对象头
 
-，锁一共有4种状态，级别从低到高依次是：**无锁状态、偏向锁状态、轻量级锁状态和重量级锁状态**，
+锁一共有4种状态，级别从低到高依次是：**无锁状态、偏向锁状态、轻量级锁状态和重量级锁状态**，
 这几个状态会**随着竞争情况逐渐升级**。锁可以升级但不能降级，意味着偏向锁升级成轻量级锁后不能降级成偏向锁
 这种锁升级却不能降级的策略，目的是为了提高获得锁和释放锁的效率
 
@@ -520,7 +520,7 @@ synchronized语义表示锁在同一时刻只能由一个线程进行获取，�
 
 
 
-### Synchronized VS CAS
+### Synchronized VS volatile
 **synchronized满足原子性**
 **volatile并不能保证原子性**
 
@@ -707,7 +707,7 @@ ArrayList并不是一个线程安全的容器，当然您可以用Vector,或者�
 这种方式效率并不是太高
 
 CopyOnWriteArrayList就是通过Copy-On-Write(COW)，
-即写**时复制的思想**来通过延时更新的策略来实现数据的最终一致性，并且能够保证读线程间不阻塞。
+即**写时复制的思想**来通过延时更新的策略来实现数据的最终一致性，并且能够保证读线程间不阻塞。
 
 
 COW通俗的理解是当我们往一个容器添加元素的时候，不直接往当前容器添加，而是先将当前容器进行Copy，复制出一
@@ -727,7 +727,6 @@ COW通俗的理解是当我们往一个容器添加元素的时候，不直接�
        因此读线程不会存在等待的情况
        
        
-
 
 ## ConcurrentLinkedQueue
 
@@ -1163,7 +1162,37 @@ current thread runs the action before allowing the other threads to
 continue
 
 
+```
+ private static void cyclicBarrier() {
+        final CyclicBarrier cyclicBarrier = new CyclicBarrier(6, new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("所有运动员入场完毕，裁判员一声令下！！！！！");
+            }
+        });
 
+        ExecutorService service = Executors.newFixedThreadPool(6);
+        for (int i = 0; i < 6; i++) {
+            service.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        System.out.println(Thread.currentThread().getName() + " 运动员，进场");
+
+                        // 当6个运动员（线程）都到达了指定的临界点（barrier）时候，才能继续往下执行，否则，则会阻塞等待在调用await()处
+                        cyclicBarrier.await(); // 此线程开始等待，直到所有的parties调用了cyclicBarrier.await()方法
+                        System.out.println(Thread.currentThread().getName() + "  运动员出发");
+                    } catch (BrokenBarrierException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        System.out.println("运动员准备进场，全场欢呼............");
+    }
+```
 当6个运动员（线程）都到达了指定的临界点（barrier）时候，才能继续往下执行，否则，则会阻塞等待在调用await()处
 
 
@@ -1189,7 +1218,6 @@ CountDownLatch与CyclicBarrier都是用于控制并发的工具类，都可以�
    并且CyclicBarrier的构造方法可以传入barrierAction，指定当所有线程都到达时执行的业务功能；
 
 4. CountDownLatch是不能复用的，而CyclicLatch是可以复用的。
-
 
 
 
@@ -1729,9 +1757,6 @@ wait--->await，notify---->Signal
              }
          }
      }
-
-
-
 ```
 
 
