@@ -1,2 +1,3 @@
 rootProject.name='AndroidAll'
 include ':app'
+include ':common'

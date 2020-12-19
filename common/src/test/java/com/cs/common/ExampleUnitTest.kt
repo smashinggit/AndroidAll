@@ -1,4 +1,4 @@
-package com.cs.androidall
+package com.cs.common
 
 import org.junit.Test
 
