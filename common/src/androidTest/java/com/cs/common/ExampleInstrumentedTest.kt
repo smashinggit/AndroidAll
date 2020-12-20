@@ -21,4 +21,8 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.cs.common.test", appContext.packageName)
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d33e0965da0612814f42bd50bfeddd8831cf48f9

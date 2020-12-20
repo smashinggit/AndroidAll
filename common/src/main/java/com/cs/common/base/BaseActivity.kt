@@ -50,6 +50,6 @@ open class BaseActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         mPermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
 
+    }
 }

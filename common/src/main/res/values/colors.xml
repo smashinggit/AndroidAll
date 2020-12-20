@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="WHITE">#FFFFFF</color>
+    <color name="BLACK">#000000</color>
+    <color name="GRAY">#FAFAFA</color>
+    <color name="GRAY_PRESSED">#F0F0F0</color>
+    <color name="TRANSPARENT">#00000000</color>
+
+
+    <!--蓝色主题-->
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#448AFF</color>
+
+    <color name="textColorPrimary">#212121</color>
+    <color name="textColorSecond">#757575</color>
+    <color name="textColorThird">#757575</color>
+
+    <color name="divider">#f0f0f0</color>
+    <color name="pressed">#f0f0f0</color>
+</resources>

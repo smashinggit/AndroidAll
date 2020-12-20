@@ -6,7 +6,6 @@ import com.cs.common.download.AndroidDownloadManager
 import com.cs.common.download.Apk
 import com.cs.common.log
 import com.cs.common.toast
-import java.io.File
 import java.net.URI
 
 /**

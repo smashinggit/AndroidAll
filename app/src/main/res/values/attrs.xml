@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyTextView">
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="size" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="QQStepView">
+        <attr name="backgroundColor" format="color" />
+        <attr name="foregroundColor" format="color" />
+        <attr name="steps" format="integer" />
+        <attr name="stepsColor" format="color" />
+        <attr name="stepsSize" format="dimension" />
+        <attr name="maxSteps" format="integer" />
+        <attr name="borderWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ColorTrackTextView">
+        <attr name="originColor" format="color" />
+        <attr name="trackColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="RatingBar">
+        <attr name="startNormal" format="reference" />
+        <attr name="startSelected" format="reference" />
+        <attr name="max" format="integer" />
+        <attr name="margin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="LetterIndexView">
+        <attr name="normalColor" format="color" />
+        <attr name="selectedColor" format="color" />
+        <attr name="letterSize" format="dimension" />
+        <attr name="letterMargin" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TagLayout">
+        <attr name="itemMarginVertical" format="dimension" />
+        <attr name="itemMarginHorizontal" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ScaledSlidingMenu">
+        <attr name="menuRightMargin" format="dimension" />
+    </declare-styleable>
+
+</resources>
