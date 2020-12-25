@@ -8,7 +8,7 @@ import android.view.ViewConfiguration
 import android.view.ViewGroup
 import android.widget.HorizontalScrollView
 import com.cs.android.R
-import com.cs.common.util.dp2px
+import com.cs.common.utils.dp2px
 
 /**
  * 仿酷狗音乐的滑动菜单

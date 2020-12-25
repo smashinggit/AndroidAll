@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -27,16 +27,18 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation "androidx.core:core-ktx:$kotlin_core_ktx"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation "com.google.android.material:material:$material"
 
-    api 'com.squareup.okhttp3:logging-interceptor:4.7.2'
-    api 'com.squareup.retrofit2:retrofit:2.9.0'
-    api 'org.ligboy.retrofit2:converter-fastjson-android:2.2.0'
-    api 'com.squareup.retrofit2:converter-gson:2.0.2'
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary"
+
+    api "com.squareup.retrofit2:retrofit:$retrofit"
+    api "com.squareup.retrofit2:converter-gson:$converter_gson"
+    api "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
+    api "org.ligboy.retrofit2:converter-fastjson-android:$converter_fastjson"
+
 }

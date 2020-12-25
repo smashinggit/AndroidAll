@@ -1,4 +1,4 @@
-package com.cs.common.util
+package com.cs.common.utils
 
 import android.content.Context
 import android.content.Intent

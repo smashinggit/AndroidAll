@@ -3,7 +3,7 @@ package com.cs.android.ui
 import android.os.Bundle
 import com.cs.android.R
 import com.cs.common.base.BaseActivity
-import com.cs.common.util.toast
+import com.cs.common.utils.toast
 import kotlinx.android.synthetic.main.activity_scaledslidemenu.*
 
 class ScaledSlideMenuActivity : BaseActivity() {
