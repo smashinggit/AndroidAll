@@ -25,21 +25,48 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.release
 
+        multiDexEnabled true
     }
 
+    // 构建类型
     buildTypes {
         release {
+            shrinkResources true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-//            applicationIdSuffix = '.debug'
+            applicationIdSuffix = '.debug'
         }
     }
 
+    //产品变种 product flavors
+
+    flavorDimensions "tier"
+    productFlavors {
+        free {
+            dimension "tier"
+//            applicationId 'com.example.myapp.free'
+            applicationIdSuffix ".free"
+        }
+
+        paid {
+            dimension "tier"
+//            applicationId 'com.example.myapp.paid'
+            applicationIdSuffix ".paid"
+        }
+    }
+
+
+    //Configure only for each module that uses Java 8 language features
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // For Kotlin projects
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
 }

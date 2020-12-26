@@ -1,5 +1,7 @@
 package com.cs.test.java;
 
+import androidx.annotation.IntDef;
+
 import java.lang.annotation.Annotation;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -7,6 +9,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Method;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 @Documented
 @Target({ElementType.METHOD})
@@ -69,4 +73,35 @@ class AnnotationTest {
     }
 
 }
+
+
+//*********************************************************************************
+
+class TypedefTest {
+
+    public static final int NAVIGATION_MODE_STANDARD = 0;
+    public static final int NAVIGATION_MODE_LIST = 1;
+    public static final int NAVIGATION_MODE_TABS = 2;
+
+    @Retention(SOURCE)
+    @IntDef({NAVIGATION_MODE_STANDARD, NAVIGATION_MODE_LIST, NAVIGATION_MODE_TABS})
+    public @interface NavigationMode {
+    }
+
+    private static void setNavigationMode(@NavigationMode int mode) {
+        System.out.println("mode " + mode);
+    }
+
+    public static void main(String[] args) {
+        setNavigationMode(NAVIGATION_MODE_STANDARD);
+    }
+}
+
+
+
+
+
+
+
+
 

@@ -1,3 +1,6 @@
+[toc]
+
+
 #
 
 Everything in Gradle sits on top of two basic concepts: projects and tasks.
