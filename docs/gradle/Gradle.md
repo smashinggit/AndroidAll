@@ -1,7 +1,6 @@
 [toc]
-
-
-#
+# Gradle
+[https://docs.gradle.org/current/userguide/tutorial_using_tasks.html#sec:projects_and_tasks](https://docs.gradle.org/current/userguide/tutorial_using_tasks.html#sec:projects_and_tasks)
 
 Everything in Gradle sits on top of two basic concepts: projects and tasks.
 

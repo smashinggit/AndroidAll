@@ -9,7 +9,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import com.cs.android.R
-import com.cs.common.util.dp2px
+import com.cs.common.utils.dp2px
 
 class QQStepView : View {
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.cs.android.R
 import com.cs.android.view.LetterIndexView
 import com.cs.common.base.BaseFragment
-import com.cs.common.util.log
+import com.cs.common.utils.log
 import kotlinx.android.synthetic.main.fragment_cityview.*
 
 class LetterIndexViewFragment : BaseFragment() {

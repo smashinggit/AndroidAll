@@ -3,10 +3,9 @@ package com.cs.common.widget
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import com.cs.common.R
-import com.cs.common.util.dp2px
+import com.cs.common.utils.dp2px
 
 class ProgressBar : View {
 

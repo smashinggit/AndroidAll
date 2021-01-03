@@ -5,7 +5,7 @@ import android.os.Environment
 import com.cs.common.base.BaseActivity
 import com.cs.common.http.Api
 import com.cs.common.http.RetrofitClient
-import com.cs.common.util.log
+import com.cs.common.utils.log
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.File

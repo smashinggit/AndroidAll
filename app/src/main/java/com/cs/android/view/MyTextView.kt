@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.cs.android.R
-import com.cs.common.util.log
+import com.cs.common.utils.log
 
 class MyTextView : View {
 

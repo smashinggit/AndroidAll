@@ -1,6 +1,5 @@
 package com.cs.common.widget.dialog
 
-import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.app.Activity
 import android.app.Dialog
@@ -12,8 +11,8 @@ import android.view.WindowManager
 import android.view.animation.LinearInterpolator
 import androidx.annotation.DrawableRes
 import com.cs.common.R
-import com.cs.common.util.screenWidth
-import com.cs.common.util.setOnValidClickListener
+import com.cs.common.utils.screenWidth
+import com.cs.common.utils.setOnValidClickListener
 import kotlinx.android.synthetic.main.dialog_common.btnCancel
 import kotlinx.android.synthetic.main.dialog_common.btnConfirm
 import kotlinx.android.synthetic.main.dialog_common.divider

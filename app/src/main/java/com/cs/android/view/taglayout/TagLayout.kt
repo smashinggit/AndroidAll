@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.cs.android.R
-import com.cs.common.util.dp2px
+import com.cs.common.utils.dp2px
 
 /**
  * 流式标签布局

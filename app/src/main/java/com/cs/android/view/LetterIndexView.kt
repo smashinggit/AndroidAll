@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import com.cs.android.R
-import com.cs.common.util.dp2px
+import com.cs.common.utils.dp2px
 
 class LetterIndexView : View {
 

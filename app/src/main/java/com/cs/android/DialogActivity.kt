@@ -7,9 +7,9 @@ import android.view.LayoutInflater
 import android.view.WindowManager
 import androidx.appcompat.app.AlertDialog
 import com.cs.common.base.BaseActivity
-import com.cs.common.util.screenWidth
-import com.cs.common.util.setOnValidClickListener
-import com.cs.common.util.toast
+import com.cs.common.utils.screenWidth
+import com.cs.common.utils.setOnValidClickListener
+import com.cs.common.utils.toast
 import com.cs.common.widget.dialog.*
 import kotlinx.android.synthetic.main.activity_dialog.*
 import kotlinx.android.synthetic.main.dialog_pic.view.*
