@@ -36,6 +36,10 @@ allprojects {
         maven {
             url "$rootDir/node_modules/react-native/android"
         }
+        maven {
+            url 'http://www.idescout.com/maven/repo/'
+            name 'IDEScout, Inc.'
+        }
     }
 }
 
