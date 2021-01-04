@@ -81,7 +81,6 @@ RetentionPolicy 是 Annotation 的策略属性，而 @Retention 的作用，就�
 定义 Annotation 时，@Retention 可有可无。若没有 @Retention，则默认是 RetentionPolicy.CLASS
 
 - @Inherited 
-
 它所标注的Annotation将具有继承性
 
 # Annotation 的作用

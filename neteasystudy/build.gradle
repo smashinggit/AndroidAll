@@ -1,75 +1,35 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
 
 android {
-    signingConfigs {
-        release {
-            storeFile file("./key.jks")
-            storePassword '123456789'
-            keyAlias = 'key0'
-            keyPassword '123456789'
-        }
-    }
-
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
+        applicationId "com.cs.neteasystudy"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-
-        applicationId "com.cs.android"
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.release
-
-        multiDexEnabled true
     }
 
-    // 构建类型
     buildTypes {
         release {
-            shrinkResources true
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
-        debug {
-            applicationIdSuffix = '.debug'
-        }
     }
-
-    //产品变种 product flavors
-
-    flavorDimensions "tier"
-    productFlavors {
-        free {
-            dimension "tier"
-//            applicationId 'com.example.myapp.free'
-            applicationIdSuffix ".free"
-        }
-
-        paid {
-            dimension "tier"
-//            applicationId 'com.example.myapp.paid'
-            applicationIdSuffix ".paid"
-        }
-    }
-
-
-    //Configure only for each module that uses Java 8 language features
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    // For Kotlin projects
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = '1.8'
     }
-
 }
 
 dependencies {
