@@ -8,10 +8,10 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseDataAdapter<T>(
-    private val mContext: Context,
-    private var mList: List<T> = listOf(),
+    protected val mContext: Context,
     @LayoutRes
-    private val itemRes: Int
+    private val itemRes: Int,
+    private var mList: List<T> = listOf()
 ) :
     RecyclerView.Adapter<BaseDataAdapter.DataViewHolder>() {
 

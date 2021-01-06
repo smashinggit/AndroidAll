@@ -26,6 +26,8 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -47,6 +49,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$kotlin_core_ktx"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
     implementation "androidx.appcompat:appcompat:$appcompat"
@@ -91,7 +94,15 @@ dependencies {
     releaseImplementation 'com.idescout.sql:sqlscout-server-noop:4.1'
 
 //    def paging_version = "3.0.0"
-//    implementation "androidx.paging: paging-runtime-ktx:$paging_version"// For Kotlin use paging-runtime-ktx
+//    implementation "androidx.paging:paging-runtime-ktx:$paging_version"// For Kotlin use paging-runtime-ktx
+
+    def paging_version = "2.1.2"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    // For Kotlin use paging-runtime-ktx
+    // alternatively - without Android dependencies for testing
+    testImplementation "androidx.paging:paging-common-ktx:$paging_version"
+    // For Kotlin use paging-common-ktx
+
 
     def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
