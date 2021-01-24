@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cs.neteasystudy">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,9 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidAll">
         <activity
-            android:name=".ui.MainActivityUi"
-            android:permission=""
-            android:configChanges="orientation|screenSize|keyboardHidden">
+            android:name=".ui.activity.taobao.TaoBaoActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:permission="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

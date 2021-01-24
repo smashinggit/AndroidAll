@@ -58,8 +58,8 @@ class ThreadTest {
 //        exchanger();
 
 //        productorAndConsumer1();
-//        productorAndConsumer2();
-        productorAndConsumer3();
+        productorAndConsumer2();
+//        productorAndConsumer3();
 
 
         ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
