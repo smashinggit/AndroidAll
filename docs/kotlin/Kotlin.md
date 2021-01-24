@@ -509,9 +509,169 @@ interface Collection<E> …… {
 
 
 
+# 作用域函数  Scope Functions
+[https://kotlinlang.org/docs/reference/scope-functions.html#let](https://kotlinlang.org/docs/reference/scope-functions.html#let)
+[https://blog.csdn.net/qq_18242391/article/details/81068906](https://blog.csdn.net/qq_18242391/article/details/81068906)
+
+The Kotlin standard library contains several functions whose sole purpose is to
+**execute a block of code within the context of an object**
+
+When you call such a function on an object with a lambda expression provided, it forms a temporary
+scope. In this scope, you can access the object without its name. 
+Such functions are called scope functions
+
+There are five of them:  run、with、T.run、T.let、T.also 以及 T.apply
+
+Basically, these functions do the same: **execute a block of code on an object**. 
+
+What's different is 
+**how this object becomes available inside the block** and
+**what is the result of the whole expression**.
 
 
-- apply  配置对象的属性
+
+
+作用域函数的用法如下：
+```
+Person("Alice", 20, "Amsterdam").let {
+    println(it)
+    it.moveTo("London")
+    it.incrementAge()
+    println(it)
+}
+```
+
+如果不使用作用函数，代码是这样的：
+```
+val alice = Person("Alice", 20, "Amsterdam")
+println(alice)
+alice.moveTo("London")
+alice.incrementAge()
+println(alice)
+```
+
+作用域函数不提供任何新的技术，它只是让代码变得更简洁、可读
+
+
+由于这些函数非常的相似，如何选择使用是非常棘手的。
+选择的标准通常取决于你的**意图**和在您的项目中使用的一致性
+
+
+## 区别
+
+它们的区别主要有2点：
+- 访问 context 对象的方式
+- 返回值
+
+
+###  context 对象 ：this 或 it
+
+```
+fun main() {
+    val str = "Hello"
+
+    // this
+    str.run {
+        println("The receiver string length: $length")
+        //println("The receiver string length: ${this.length}") // does the same
+    }
+
+    // it
+    str.let {
+        println("The receiver string's length is ${it.length}")
+    }
+}
+```
+
+#### this
+函数 run、with、apply 通过 this 关键字访问 context 对象。
+在 lambda 表达式中，可以省略 this 去直接访问对象的成员变量或者方法
+如果 this 关键字省略了，很难区分变量或者方法是内部对象的还是外部的
+
+所以，this 关键字： 主要用来**调用它的方法或者分配属性**
+```
+val adam = Person("Adam").apply { 
+    age = 20                       // same as this.age = 20 or adam.age = 20
+    city = "London"
+}
+println(adam)
+
+```
+
+#### it
+相反的，函数 let、also 将 context 对象作为 lambda 表达式的参数
+it 比 this 更简洁，更易读，但是在调用调用对象方法的时候无法像 this 一样省略关键字
+
+因此， it 关键字 通常用来**作为方法调用的参数**
+
+```
+fun getRandomInt(): Int {
+    return Random.nextInt(100).also {
+        writeToLog("getRandomInt() generated value $it")
+    }
+}
+
+val i = getRandomInt()
+```
+
+### 返回值
+
+共两种区别：
+- 返回对象本身： apply、also
+- 返回lambda表达式的结果： let、with、run
+
+#### 对象本身
+
+apply、also 的返回值是对象本身，因此他们可以用来进行链式调用
+```
+val numberList = mutableListOf<Double>()
+numberList.also { println("Populating the list") }
+    .apply {
+        add(2.71)
+        add(3.14)
+        add(1.0)
+    }
+    .also { println("Sorting the list") }
+    .sort()
+
+```
+
+### lambda表达式结果
+let、with、run 的返回值是对象本身，因此他们可以用来将表达式结果赋值给一个变量、链式操作的结果 等等
+
+```
+val numbers = mutableListOf("one", "two", "three")
+val countEndsWithE = numbers.run { 
+    add("four")
+    add("five")
+    count { it.endsWith("e") }
+}
+println("There are $countEndsWithE elements that end with e.")
+
+```
+
+
+## 如何使用及选择
+实际上会有很多总情况，所以下面的例子只是展示了最常见的用法
+
+
+## let
+The context object is available as an argument (it). 
+The return value is the lambda result.
+
+let can be used to** invoke one or more functions on results of call chains**. 
+
+```
+val numbers = mutableListOf("one", "two", "three", "four", "five")
+val resultList = numbers.map { it.length }.filter { it > 3 }
+println(resultList)    
+
+```
+
+
+##  apply  配置对象的属性
+The context object is available as a receiver (this). 
+The return value is the object itself.
 
 ```
 val myRectangle = Rectangle().apply {
@@ -519,12 +679,12 @@ val myRectangle = Rectangle().apply {
     breadth = 5
     color = 0xFAFAFA
 }
-
 ```
+
 **这对于配置未出现在对象构造函数中的属性非常有用**
 
 
-- with  对一个对象实例调用多个方法
+## with  对一个对象实例调用多个方法
 
 ```
 class Turtle {
@@ -547,6 +707,11 @@ with(myTurtle) { // 画一个 100 像素的正方形
 
 
 ```
+
+## run
+
+
+## also
 
 
 #

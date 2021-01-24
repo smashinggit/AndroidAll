@@ -47,6 +47,10 @@ fun Context.toast(msg: String) {
     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }
 
+fun Fragment.toast(msg: String) {
+    Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+}
+
 inline fun <reified T> Context.startActivity() {
     startActivity(Intent(this, T::class.java))
 }

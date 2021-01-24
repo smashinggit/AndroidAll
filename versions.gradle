@@ -17,5 +17,6 @@ ext {
     converter_fastjson = "2.2.0"
     logging_interceptor = "4.7.2"
 
+    glide = "4.11.0"
     leakcanary = "2.4"
 }

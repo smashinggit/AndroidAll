@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_room"
+    app:startDestination="@id/studentFragment">
+
+    <fragment
+        android:id="@+id/studentFragment"
+        android:name="com.cs.jetpack.room.ui.StudentFragment"
+        android:label="studentFragment"
+        tools:layout="@layout/fragment_student"/>
+
+
+    <fragment
+        android:id="@+id/teacherFragment"
+        android:name="com.cs.jetpack.room.ui.TeacherFragment"
+        android:label="TeacherFragment"
+        tools:layout="@layout/fragment_teacher"/>
+</navigation>

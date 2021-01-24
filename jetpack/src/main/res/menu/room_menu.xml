@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menuStudent"
+        android:title="学生表"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuTeacher"
+        android:title="教师表"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuCourse"
+        android:title="课程表"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menuScore"
+        android:title="成绩表"
+        app:showAsAction="never" />
+</menu>

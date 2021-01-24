@@ -6,8 +6,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BaseUrl = "https://api.github.com/"
+    var DEBUG: Boolean = false
 
+    const val HEADER_NO_ENCRYPT = "NO_ENCRYPT"
+    const val HEADER_NO_ENCRYPT_REQUEST = "NO_ENCRYPT_REQUEST"
+    const val HEADER_NO_ENCRYPT_RESPONSE = "NO_ENCRYPT_RESPONSE"
+
+    const val TEXT_PLAIN = "text/plain; charset=UTF-8"
+
+
+    private const val BaseUrl = "https://api.github.com/"
 
     val client by lazy {
         OkHttpClient.Builder()
