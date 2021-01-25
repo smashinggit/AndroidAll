@@ -42,10 +42,10 @@ class EncryptRequestInterceptor(private val encrypt: (String) -> String) : Inter
                 for (i in 0 until querySize) {
                     json[url.queryParameterName(i)] = url.queryParameterValue(i)
                 }
-                Logs.log("${url.toUrl()} --->\n加密前:" + json.toJSONString())
+                Logs.logd("${url.toUrl()} --->\n加密前:" + json.toJSONString())
 
                 val encryptParams = encrypt(json.toJSONString())
-                Logs.log("${url.toUrl()} --->\n加密后:" + encryptParams)
+                Logs.logd("${url.toUrl()} --->\n加密后:" + encryptParams)
 
                 val uri = "${url.scheme}://${url.host}:${url.port}${url.toUrl().path}"
                 return chain.proceed(
@@ -65,10 +65,10 @@ class EncryptRequestInterceptor(private val encrypt: (String) -> String) : Inter
                     for (i in 0 until body.size) {
                         json[body.name(i)] = body.value(i)
                     }
-                    Logs.log("${url.toUrl()} --->\n加密前:" + json.toJSONString())
+                    Logs.logd("${url.toUrl()} --->\n加密前:" + json.toJSONString())
 
                     val encryptContent = encrypt(json.toJSONString())
-                    Logs.log("${url.toUrl()} --->\n加密后:" + encryptContent)
+                    Logs.logd("${url.toUrl()} --->\n加密后:" + encryptContent)
 
                     val plainBody = encryptContent.toRequestBody(TEXT_PLAIN.toMediaTypeOrNull())
                     return chain.proceed(

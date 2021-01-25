@@ -28,10 +28,10 @@ class DecryptResponseInterceptor(private val decrypt: (String) -> String) : Inte
             source.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
             val buffer = source.buffer
             val originalString = buffer.clone().readString(Charset.forName("UTF-8"))
-            Logs.log("${request.url.toUrl()} --->\n解密前:" + originalString)
+           Logs.logd("${request.url.toUrl()} --->\n解密前:" + originalString)
             try {
                 val decryptContent = decrypt(originalString)
-                Logs.log("${request.url.toUrl()} --->\n解密后:" + decryptContent)
+               Logs.logd("${request.url.toUrl()} --->\n解密后:" + decryptContent)
 
                 val decryptBody = ResponseBody.create(response.body!!.contentType(), decryptContent)
                 return response.newBuilder()
@@ -39,7 +39,7 @@ class DecryptResponseInterceptor(private val decrypt: (String) -> String) : Inte
                     .build()
 
             } catch (e: Exception) {
-                Logs.log("${request.url.toUrl()} <---解密失败！原始报文：$originalString")
+               Logs.logd("${request.url.toUrl()} <---解密失败！原始报文：$originalString")
             }
         }
 

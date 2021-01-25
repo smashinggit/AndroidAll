@@ -11,7 +11,7 @@
 # 二、Java 
 ![详情见Java.md](/summary/Java.md)
 
-- 一、Java基础
+## 一、Java基础
  - 1.1 JVM
  - 1.2 基本数据类型
  - 1.3  自动装箱与拆箱
@@ -27,7 +27,7 @@
  - 1.7 ==和 equals 的区别
  - 1.8  深拷贝 vs 浅拷贝
  
-- 二、 Java面向对象
+## 二、 Java面向对象
  - 2.1 构造器 Constructor 是否可被 override?
  - 2.2 在 Java 中定义一个不做事且没有参数的构造方法的作用
  - 2.3 对象实体与对象引用有何不同?
@@ -35,9 +35,9 @@
  - 2.5 面向对象三大特征 : 封装、继承、多态
  - 2.6 String 为什么是不可变的?
  - 2.7 String、StringBuffer 、StringBuilder 的区别是什么?
- - 
+  
  
-- 三、 Java 核心技术
+## 三、 Java 核心技术
  - 3.1 反射 ![详见/docs/java/Reflect.md](/docs/java/Reflect.md)
   - 概述
   - 获取 Class 对象
@@ -126,17 +126,33 @@
 
 #  三、 Android 
 
+## 基础
+  - 1.1 四大组件
+   - ![Activity](/docs/android/Activity.md)
+   - ![Service](/docs/android/Service.md)
+   - content provider
+   - broadcast receiver
+
+  - 1.2 ![Handler](/docs/android/Handler.md)
+  - ![Android 签名](/docs/android/signature.md)
 
 
 
+## 进阶
+  - 1.1 View显示过程   ![详见UI.md](/docs/android/ui/Ui.md)
+  - 1.2 View绘制流程    ![详见UI.md](/docs/android/ui/Ui.md)
+  - 1.3 View触摸事件传递  ![详见UI.md](/docs/android/ui/Ui.md)
+  - 1.4 View滑动         ![详见UI.md](/docs/android/ui/Ui.md)
+  - 1.5 属性动画
+   - ObjectAnimator
+   - valueAnimator
+   
+   
 
-
-
-
- 
-
-
-
+## Android 性能优化  ![详见Android.md](/summary/Android.md)
+  - UI优化
+  - 内存优化
+  - 电量优化
 
 
 # 四、Kotlin (todo)

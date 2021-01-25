@@ -342,9 +342,27 @@ public boolean dispatchTouchEvent(MotionEvent ev){
         }
 ```
 
+
 # 四、属性动画
 
 本质：
 **通过一个线程每隔一段时间调用View.setX(index++) 值也能实现动画效果，这就是属性动画的本质**
 
 
+# 五、View滑动
+
+## 1. View本身的scrollTo/scrollBy方法
+在滑动过程中，mScrollX的值总是等于View左边缘（View的位置）和View内容左边缘在水平方向的距离，
+而mScrollY的值总是等于View上边缘和View内容上边缘在垂直方向的距离。
+
+从左向右滑动，mScrollX为负值；从上向下滑动，mScrollY为负值；
+
+使用scrollTo和scrollBy来实现滑动，**只能将View的内容进行移动，并不能将View本身进行移动**。
+不管怎么滑动，都不能将当前View滑动到附近View所在的区域
+
+## 2. 通过动画给View施加平移效果来实现滑动
+
+View动画是对View的影像做操作，不能改变View的位置参数，包括宽高。如要保留动画后的状态需将fillAfter设置为true。
+属性动画不会存在此问题
+
+## 3. 改变View的LayoutParam使得View重新布局从而实现滑动
