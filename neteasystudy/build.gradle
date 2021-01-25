@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -43,6 +44,11 @@ dependencies {
     implementation "com.google.android.material:material:$material"
 
     implementation project(":common")
+
+    implementation 'com.alibaba.android:vlayout:1.2.36@aar'
+    implementation 'com.youth.banner:banner:2.1.0'
+    implementation 'com.sunfusheng:MarqueeView:1.4.1'
+
 
 
     testImplementation 'junit:junit:4.13'
