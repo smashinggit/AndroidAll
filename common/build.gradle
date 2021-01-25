@@ -28,7 +28,12 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$kotlin_core_ktx"
+
+    //协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$coroutinesKTX"  //ViewModelScope
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$coroutinesKTX"    //LifeCycleScope
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$coroutinesKTX"
 
     implementation "androidx.appcompat:appcompat:$appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"

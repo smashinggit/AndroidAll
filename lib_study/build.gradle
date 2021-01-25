@@ -39,6 +39,10 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
 
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$coroutinesKTX"  //ViewModelScope
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$coroutinesKTX"    //LifeCycleScope
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$coroutinesKTX"
+
 
     // 注意，使用自定义的Configurations打UberJar,这里需要额外添加一遍依赖
     uberConfigurations "com.squareup.retrofit2:retrofit:$retrofit"
