@@ -410,7 +410,7 @@ StringBuilder 与 StringBuffer 都继承自 AbstractStringBuilder 类，
 
 ## 3.1 反射
 
-[详见/docs/java/Reflect.md]()
+![详见/docs/java/Reflect.md](/docs/java/Reflect.md)
 
 JAVA 反射机制是在运行状态中，
 对于任意一个类，都能够知道这个类的所有属性和方法；
@@ -450,7 +450,7 @@ JAVA 反射机制是在运行状态中，
 
 ### 重点：多线程并发
 
-[详见/docs/java/Thread.md]()
+![详见/docs/java/Thread.md](/docs/java/Thread.md) 
 
 
 
@@ -484,6 +484,128 @@ Java I0 流的 40 多个类都是从如下 4 个抽象类基类中派生出来�
 
 ## 3.4 容器类
 
+### 3.4.1 分类
+
+Java的容器类分为List,Set,Queue和Map。
+
+Java容器类库的主要用途是持有对象，通常两种不同的数据结构:
+
+- Collection，独立元素的序列，这些元素都服从一条或多条规则。List、Set以及Queue都是Collection的一种，
+
+- Map , 存储的是“键值对”对象，通过键来检索值
+Map：以Key-Value形式存储, key不可重复 value可以重复
+
+### 3.4.2 List
+有序的 collection（也称为序列）。此接口的用户可以对列表中每个元素的插入位置进行精确地控制。
+用户可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素。
+与 set 不同，列表通常允许重复的元素
+
+- ArrayList<E>
+List 接口的大小可变数组的实现。实现了所有可选列表操作，并允许包括 null 在内的所有元素
+线程不安全
+
+- LinkedList<E>
+List 接口的链接列表实现
+线程不安全
+
+- Vector<E>
+Vector 类可以实现可增长的对象数组
+线程安全
+
+### 3.4.3 Set
+
+个不包含重复元素的 collection
+
+- HashSet<E>
+此类实现 Set 接口，由哈希表（实际上是一个 HashMap 实例）支持
+线程不安全
+
+- LinkedHashSet<E>
+具有可预知迭代顺序的 Set 接口的哈希表和链接列表实现。
+此实现与 HashSet 的不同之外在于，后者维护着一个运行于所有条目的双重链接列表
+线程不安全
+
+- TreeSet<E>
+基于 TreeMap 的 NavigableSet 实现。使用元素的自然顺序对元素进行排序，
+或者根据创建 set 时提供的 Comparator 进行排序，具体取决于使用的构造方法
+线程不安全
+
+
+### 3.4.4 Queue
+在处理元素前用于保存元素的 collection。除了基本的 Collection 操作外，队列还提供其他的插入、提取和检查操作
+
+- ArrayDeque<E>
+Deque 接口的大小可变数组的实现。数组双端队列没有容量限制；它们可根据需要增加以支持使用。
+线程不安全的
+
+
+### 3.4.5 Map
+将键映射到值的对象。一个映射不能包含重复的键；每个键最多只能映射到一个值
+
+- HashMap<K,V>
+基于哈希表的 Map 接口的实现
+线程不安全
+
+- LinkedHashMap<K,V>
+Map 接口的哈希表和链接列表实现，具有可预知的迭代顺序
+线程不安全
+
+- Hashtable<K,V>
+此类实现一个哈希表，该哈希表将键映射到相应的值
+线程安全
+
+- TreeMap<K,V>
+基于红黑树（Red-Black tree）的 NavigableMap 实现
+线程不安全的
+
+
+
+
+### 3.4.6 面试题
+
+- 请说一下Java容器集合的分类，各自的继承结构
+
+Collection下分为Set，List，Queue
+
+Set的常用实现类有HashSet，TreeSet等
+List的常用实现类有ArrayList，LinkedList等
+Queue的常用实现类有LinkedList，ArrayBlockingQueue等
+
+Map下没有进一步分类，它的常用实现类有HashMap，ConcurrentHashMap等
+
+- 谈谈ArrayList和LinkedList的区别
+
+本质的区别来源于两者的底层实现：
+ArrayList的底层是数组，
+LinkedList的底层是双向链表
+
+数组拥有O(1)的查询效率，可以通过下标直接定位元素；
+链表在查询元素的时候只能通过遍历的方式查询，效率比数组低
+
+数组增删元素的效率比较低，通常要伴随拷贝数组的操作；
+链表增删元素的效率很高，只需要调整对应位置的指针即可
+
+- 谈谈ArrayList和Vector的区别
+
+两者的底层实现相似，关键的不同在于Vector的对外提供操作的方法都是用synchronized修饰的，
+也就是说Vector在并发环境下是线程安全的，
+而ArrayList在并发环境下可能会出现线程安全问题
+
+由于Vector的方法都是同步方法，执行起来会在同步上消耗一定的性能，
+所以在单线程环境下，Vector的性能是不如ArrayList的
+
+- 请介绍一下HashMap的实现原理
+
+我们一般用HashMap存储key-value类型的数据，它的底层是一个数组，
+当我们调用put方法的时候，首先会对key进行计算得出一个hash值，然后根据hash值计算出存放在数组上的位置
+
+这个时候我们会遇到两种情况：
+一是数组上该位置为空，可以直接放入数据；
+还有一种情况是该位置已经存放值了，这就发生了哈希冲突
+
+在现在使用较为普遍的JDK1.8中是这样处理哈希冲突的：
+先用链表把冲突的元素串起来，如果链表的长度达到了8，并且哈希表的长度大于64，则把链表转为红黑树。（
+在JDK1.7中没有转化为红黑树这一步，只用链表解决冲突）
 
 
 ## 3.5 异常

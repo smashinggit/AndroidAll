@@ -19,7 +19,7 @@ PhoneWindow#   installDecor();   -> generateDecor() -> new DecorView()
                mLayoutInflater.inflate(layoutResID,mContentParent)  //mContentParent 是一个FrameLayout,R.id.content
 
 
-[视图结构.png]
+![视图结构.png](/pics/android/view/视图结构.png)
 
 ## View 的绘制流程
  
@@ -348,11 +348,3 @@ public boolean dispatchTouchEvent(MotionEvent ev){
 **通过一个线程每隔一段时间调用View.setX(index++) 值也能实现动画效果，这就是属性动画的本质**
 
 
-
-
-
-# 五、大型项目屏幕适配方案
-
-# 六、Material Design
-
-# 七、自定义View
