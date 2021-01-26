@@ -343,6 +343,24 @@ public boolean dispatchTouchEvent(MotionEvent ev){
 ```
 
 
+## 事件分发总结
+
+- dispatchTouchEvent
+return true：表示该View内部消化掉了所有事件
+return false：表示事件在本层不再继续进行分发，并交由上层控件的onTouchEvent方法进行消费
+return super.dispatchTouchEvent(ev)：默认事件将分发给本层的事件拦截onInterceptTouchEvent方法进行处理
+
+- onInterceptTouchEvent
+return true：表示将事件进行拦截，并将拦截到的事件交由本层控件的onTouchEvent进行处理
+return false：表示不对事件进行拦截，事件得以成功分发到子View
+return super.onInterceptTouchEvent(ev)：默认表示不拦截该事件，并将事件传递给下一层View的dispatchTouchEvent
+
+- onTouchEvent
+return true：表示onTouchEvent处理完事件后消费了此次事件
+return fasle：表示不响应事件，那么该事件将会不断向上层View的onTouchEvent方法传递，直到某个View的onTouchEvent方法返回true
+return super.dispatchTouchEvent(ev)：表示不响应事件，结果与return false一样
+
+
 # 四、属性动画
 
 本质：

@@ -8,6 +8,11 @@
 
 
 
+
+
+
+
+
 # 二、Java 
 ![详情见Java.md](/summary/Java.md)
 
@@ -157,7 +162,43 @@
 
 # 四、Kotlin (todo)
 
-## 协程
+![Kotlin](/summary/Kotlin.md)
+
+
+# 五、设计模式  
+![设计模式](/summary/DesignPattern.md)
+
+- 计模式的六大原则
+- 单例模式
+- 工厂模式
+- 建造者模式(Builder)
+- 代理模式
+- 策略模式
+- 观察者模式
+- 适配器模式
+- 模板模式
+
+
+
+# 六、数据结构
+![详见数据结构](/summary/DataStructure.md)
+- 数组（Array）
+- 队列（Queue）
+- 链表（Linked List）
+- 栈（Stack）
+- 树（Tree）
+- 散列表（Hash）
+- 堆（Heap）
+- 图（Graph）
+
+
+# 七、算法
+
+
+# 面试题
+![Java面试题总结](/summary/Interview_Java.md)
+![Android面试题总结一](/summary/Interview_android.md)
+![Android面试题总结二](/summary/Interview_android2.md)
 
 
 
