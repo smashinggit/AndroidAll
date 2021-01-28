@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     signingConfigs {
@@ -81,6 +82,10 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
     implementation "com.google.android.material:material:$material"
+
+//    implementation "org.greenrobot:greendao:$greendao"
+    implementation 'org.greenrobot:greendao:3.3.0' // add library
+
 
     implementation project(":common")
 

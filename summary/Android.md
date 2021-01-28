@@ -185,6 +185,123 @@ Bitmap = null;
 - 在手机锁屏后，CPU会过一段时间才休眠，如果程序中有定时任务，在CPU休眠后会被挂起不执行，但是在CPU休眠之前，定时任务还是会一直的执行的，之前遇到过这么一个问题，我们采用Picasso库：Picasso.with(context)
 
 
+### 启动优化
+[启动优化](https://github.com/BlackZhangJX/Android-Notes/blob/master/Docs/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9F%A5%E8%AF%86%E7%82%B9%E6%B1%87%E6%80%BB.md#%E5%90%AF%E5%8A%A8%E4%B8%BB%E9%A2%98%E4%BC%98%E5%8C%96)
+
+
+### APK瘦身
+
+apk瘦身概览-六大措施
+
+1. 移除无用资源
+2. 国际化资源配置：精确配置需要的语言，不需要的语言，对应的字符串不要打包到apk中
+3. 动态库打包配置：仅配置armeabi-v7a即可运行，如果特殊要求，可酌情处理
+4. 压缩代码、压缩资源
+5. 资源混淆
+6. svg图片优化
+
+#### 1. 移除无用资源
+
+检测移除：
+使用方式：点击as顶部的Analyze，再点击“Run Inspection By Name”，输入“Unused Resources”并选择，
+此时会弹出无用文件列表，选择某个文件，如果需要移除，点击右侧的“Remove Declaration”即可，
+不需要移除点击“Add a tool”，添加保持
+
+#### 2. 国际化资源配置
+即使我们自己不去写多国语言的字符串资源，第三方库一般会有对应的资源，
+而如果我们不去精确配置语言，apk包中将会包括多国语言的字符串，
+
+如何去做定向语言配置呢？gradle中一行即可实现，比如我们仅支持中文和英文
+```
+android {
+    defaultConfig{
+        resConfigs 'en','cn'
+    }
+}
+```
+#### 3. 动态库打包配置
+
+时候，我们需要依赖一些c层的so文件，比如语音处理、音视频处理等。
+在Android 系统上，每一个CPU架构对应一种so文件：armeabi，armeabi-v7a，arm64- v8a，x86，
+x86_64，mips，mips64。如果把每个架构的so文件都放进项目中，那么我们的apk包大小会是很大的，
+其实一般我们只需要放一个armeabi-v7a的so文件就行了，然后在gradle中配置如下
+
+```
+android{   
+    defaultConfig{       
+        ndk{           
+            abiFilters "armeabi-v7a"       
+        }   
+    }
+}
+```
+这样，所有cpu架构都能运行，只是中间要做一层指令转换，当然我们不需要关心这个
+
+#### 4. 压缩代码、压缩资源
+gradle为我们提供了一种压缩代码和压缩资源的方式，shrinkResources为压缩资源，minifyEnabled为压缩代码
+```
+buildTypes{
+    debug {           
+        shrinkResources true           
+        minifyEnabled true           
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'       
+    }
+}
+```
+
+压缩代码基于代码混淆来做，代码混淆是指将代码中有实际意义长字符串改为无实际意义短字符串而又不影响程序运行，
+从而达到压缩和增加反编译难度的目的
+
+minifyEnabled设置为true后，因为资源混淆，项目运行可能会报错，这个时候我们需要根据详细的报错情况去处理混淆
+
+压缩资源，是基于资源混淆来做的，这里的混淆是将资源文件名从有实际意义长字符串改为无实际意义短字符串而又不影响程序运行，
+从而达到压缩和增加反编译难度的目的
+
+#### 5.深度资源混淆
+[微信开源AndResGuard](https://github.com/shwenzhang/AndResGuard)
+
+#### 6. SVG图片优化
+SVG(Scalable Vector Graphics)，可缩放矢量图。SVG不会像位图一样因为缩放而让图片质量下降。
+优点在于可以减小APK的尺寸。常用于简单小图标。宽和高均小于200的图适合用svg矢量图
+
+svg是由xml定义的，标准svg根节点为 svg。
+Android中只支持  vector，我们可以通过 vector 将svg的根节点 svg 转换为 vector。
+
+使用方式
+- 在res目录上点击右键，选择New
+- 选择 Vector Asset
+- 可以选择系统图片，也可以导入自己的svg图片
+- SVG批量转换：上面的使用是单个图片的使用，如果是很多图片，可以使用第三方工具 svg2vector 来进行批量转换
+
+**使用矢量图 必须使用 app:srcCompat 属性，而不是 android:src**
+
+```
+<ImageView       
+    android:layout_width="wrap_content"       
+    android:layout_height="wrap_content"   
+    app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 第三方库源码阅读
 
 ## OkHttp

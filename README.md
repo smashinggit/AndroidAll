@@ -158,8 +158,14 @@
   - UI优化
   - 内存优化
   - 电量优化
+  - APK瘦身
   
+
+## 数据库
+  - GreenDao 
+  - Room
   
+    
 ## 组件化  
 [组件化](/summary/Modularization.md)
 
@@ -170,6 +176,10 @@
 
 
 # 四、Kotlin (todo)
+
+kotlin里面的out,in的简单理解:
+out 相当于java里面的 <? extend>
+in 相当于java里面的 <? super>
 
 [Kotlin](/summary/Kotlin.md)
 

@@ -20,4 +20,5 @@ ext {
 
     glide = "4.11.0"
     leakcanary = "2.4"
+    greendao = "3.3.0"
 }
