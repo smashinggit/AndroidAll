@@ -14,7 +14,7 @@
 
 
 # 二、Java 
-![详情见Java.md](/summary/Java.md)
+[详情见Java.md](/summary/Java.md)
 
 ## 一、Java基础
  - 1.1 JVM
@@ -43,7 +43,7 @@
   
  
 ## 三、 Java 核心技术
- - 3.1 反射 ![详见/docs/java/Reflect.md](/docs/java/Reflect.md)
+ - 3.1 反射 [详见/docs/java/Reflect.md](/docs/java/Reflect.md)
   - 概述
   - 获取 Class 对象
   - 获取属性、字段、及相关调用
@@ -51,7 +51,7 @@
   
  - 3.2  多线程与并发 (重点)
   - 简述线程、程序、进程的基本概念。以及他们之间关系是什么?
-  - 多线程并发 ![详见/docs/java/Thread.md](/docs/java/Thread.md)
+  - 多线程并发 [详见/docs/java/Thread.md](/docs/java/Thread.md)
    - 相关概念
      - 同步 VS 异步
      - 并发 VS 并行
@@ -133,42 +133,49 @@
 
 ## 基础
   - 1.1 四大组件
-   - ![Activity](/docs/android/Activity.md)
-   - ![Service](/docs/android/Service.md)
+   - [Activity](/docs/android/Activity.md)
+   - [Service](/docs/android/Service.md)
    - content provider
    - broadcast receiver
 
-  - 1.2 ![Handler](/docs/android/Handler.md)
-  - ![Android 签名](/docs/android/signature.md)
+  - 1.2 [Handler](/docs/android/Handler.md)
+  - [Android 签名](/docs/android/signature.md)
 
 
 
 ## 进阶
-  - 1.1 View显示过程   ![详见UI.md](/docs/android/ui/Ui.md)
-  - 1.2 View绘制流程    ![详见UI.md](/docs/android/ui/Ui.md)
-  - 1.3 View触摸事件传递  ![详见UI.md](/docs/android/ui/Ui.md)
-  - 1.4 View滑动         ![详见UI.md](/docs/android/ui/Ui.md)
+  - 1.1 View显示过程   [详见UI.md](/docs/android/ui/Ui.md)
+  - 1.2 View绘制流程    [详见UI.md](/docs/android/ui/Ui.md)
+  - 1.3 View触摸事件传递  [详见UI.md](/docs/android/ui/Ui.md)
+  - 1.4 View滑动         [详见UI.md](/docs/android/ui/Ui.md)
   - 1.5 属性动画
    - ObjectAnimator
    - valueAnimator
    
    
 
-## Android 性能优化  ![详见Android.md](/summary/Android.md)
+## Android 性能优化  [详见Android.md](/summary/Android.md)
   - UI优化
   - 内存优化
   - 电量优化
   
+  
 ## 组件化  
+[组件化](/summary/Modularization.md)
+
+
+## NDK
+[NDK开发](/summary/NDK.md)
+  
 
 
 # 四、Kotlin (todo)
 
-![Kotlin](/summary/Kotlin.md)
+[Kotlin](/summary/Kotlin.md)
 
 
 # 五、设计模式  
-![设计模式](/summary/DesignPattern.md)
+[设计模式](/summary/DesignPattern.md)
 
 - 计模式的六大原则
 - 单例模式
@@ -183,7 +190,7 @@
 
 
 # 六、数据结构
-![详见数据结构](/summary/DataStructure.md)
+[详见数据结构](/summary/DataStructure.md)
 - 数组（Array）
 - 队列（Queue）
 - 链表（Linked List）
@@ -195,12 +202,14 @@
 
 
 # 七、算法
+[算法](summary/Algorithm.md)
+
 
 
 # 面试题
-![Java面试题总结](/summary/Interview_Java.md)
-![Android面试题总结一](/summary/Interview_android.md)
-![Android面试题总结二](/summary/Interview_android2.md)
+[Java面试题总结](/summary/Interview_Java.md)
+[Android面试题总结一](/summary/Interview_android.md)
+[Android面试题总结二](/summary/Interview_android2.md)
 
 
 
