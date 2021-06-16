@@ -1,8 +1,8 @@
 package com.cs.common.base
 
 import androidx.appcompat.app.AppCompatActivity
-import com.cs.common.log
 import com.cs.common.utils.PermissionHelper
+import com.cs.common.utils.log
 
 /**
  * @Desc

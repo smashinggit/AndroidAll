@@ -4,8 +4,8 @@ import android.app.IntentService
 import android.content.Intent
 import com.cs.common.download.AndroidDownloadManager
 import com.cs.common.download.Apk
-import com.cs.common.log
-import com.cs.common.toast
+import com.cs.common.utils.log
+import com.cs.common.utils.toast
 import java.net.URI
 
 /**

@@ -4,9 +4,9 @@
 
 
 
-# 一、计算机基础 (todo)
+# 一、计算机基础
 
-
+[详情见Base.md](/docs/Base.md)
 
 
 

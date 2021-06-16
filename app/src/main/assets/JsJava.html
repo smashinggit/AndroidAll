@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>JS与Java相互调用</title>
+</head>
+<body>
+<button class="btnAlert">警告弹框</button>
+<button class="btnConfirm">确认弹框</button>
+<button class="btnPrompt">输入弹框</button>
+
+<br/>
+<br/>
+
+<button class="btnCallJava">js调用java 无参</button>
+<button class="btnCallJavaWithParam">js调用java 有参</button>
+
+<br/>
+<br/>
+
+<input class="btnFileExplore" type="file"/>
+
+
+<script>
+      var btnAlert = document.querySelector(".btnAlert");
+      var btnConfirm = document.querySelector(".btnConfirm");
+      var btnPrompt = document.querySelector(".btnPrompt");
+      var btnCallJava = document.querySelector(".btnCallJava");
+      var btnFileExplore = document.querySelector(".btnFileExplore");
+      var btnPhotoAlbum = document.querySelector(".btnPhotoAlbum");
+
+      var btnCallJavaWithParam = document.querySelector(
+        ".btnCallJavaWithParam"
+      );
+
+      btnAlert.addEventListener("click", function () {
+        console.log("js弹出警告框");
+        var result = alert("js弹出警告框");
+        console.log("警告框结果 "+result);
+      });
+
+      btnConfirm.addEventListener("click", function () {
+        console.log("js弹出确认框");
+        var result = confirm("js弹出确认框");
+        console.log("确认框结果 "+result);
+      });
+
+      btnPrompt.addEventListener("click", function () {
+        console.log("js弹出输入框");
+        var result =  prompt("js弹出输入框");
+        console.log("输入框结果 "+result);
+      });
+
+      btnCallJava.addEventListener("click", function () {
+        console.log("js 调用 java 中的 jsCallJava()");
+        window.injectedObject.jsCalJava();
+      });
+
+      btnCallJavaWithParam.addEventListener("click", function () {
+        console.log("js 调用 java 中的 jsCallJava(String key)");
+        window.injectedObject.jsCalJava("key from JS");
+      });
+
+      btnFileExplore.addEventListener("click", function () {
+        console.log("js 选择文件");
+        // window.injectedObject.jsCalJava("key from JS");
+      });
+
+
+      //Java 调用 JS 方法
+      function refresh(){
+        console.log("Java 调用 JS 方法 refresh()")
+      }
+
+      function login(name, passwd){
+        console.log("Java 调用 JS 方法 login() "+ name +" "+ passwd)
+      }
+
+
+</script>
+</body>
+</html>

@@ -42,6 +42,13 @@ PhoneWindow#   installDecor();   -> generateDecor() -> new DecorView()
    绘制  ViewRootImpl.performDraw   
 
 
+Activity 的启动流程：
+
+performLaunchActivity ->  Activity.onCreate
+handleResumeActivity ->   performResumeActivity ->  Activity.onResume
+                          wm.addView(decor, l) ->  这个时候才把我们的 DecorView 加载到了 WindowManager
+View 的绘制流程才开始 ->  measure,layout, draw
+
 
 
 ## UI绘制详细步骤
@@ -357,7 +364,7 @@ return super.onInterceptTouchEvent(ev)：默认表示不拦截该事件，并将
 
 - onTouchEvent
 return true：表示onTouchEvent处理完事件后消费了此次事件
-return fasle：表示不响应事件，那么该事件将会不断向上层View的onTouchEvent方法传递，直到某个View的onTouchEvent方法返回true
+return false：表示不响应事件，那么该事件将会不断向上层View的onTouchEvent方法传递，直到某个View的onTouchEvent方法返回true
 return super.dispatchTouchEvent(ev)：表示不响应事件，结果与return false一样
 
 

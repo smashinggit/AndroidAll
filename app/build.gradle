@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'org.greenrobot.greendao'
 
 android {
     signingConfigs {
@@ -71,6 +71,10 @@ android {
         jvmTarget = "1.8"
     }
 
+    viewBinding {
+        enabled = true
+    }
+
 }
 
 dependencies {
@@ -88,6 +92,10 @@ dependencies {
 
 
     implementation project(":common")
+
+
+    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
+
 
 
     testImplementation 'junit:junit:4.13'
