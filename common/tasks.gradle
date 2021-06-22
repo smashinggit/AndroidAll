@@ -1,0 +1,129 @@
+//复制文件
+task copyCourceJar(type: Copy) dependsOn(build) {
+    from "$buildDir/intermediates/compile_library_classes_jar/release"
+    into "$buildDir/jar"
+}
+
+task copySourceCode(type: Copy) {
+    from "/src/main/java"
+    into "/build/source"
+
+    //    include('**/*.txt', '**/*.java', '**/*.properties')
+//    exclude('**/*.xml')
+
+//    def src = file("src/main/java")
+//    from(src)
+//
+//    def dest = file("$buildDir/source")
+//    into(dest)
+}
+
+task copyTaskWithPatterns(type: Copy) {
+    from 'src/main/webapp'
+    into "$buildDir/explodedWar"
+    include '**/*.html'
+    include '**/*.jsp'
+    exclude { FileTreeElement details ->
+        details.file.name.endsWith('.html') &&
+                details.file.text.contains('DRAFT')
+    }
+}
+
+
+//打包成zip
+//Archiving a directory as a ZIP
+// 名字的组成规则是：[archiveBaseName]-[archiveAppendix]-[archiveVersion]-[archiveClassifier].[archiveExtension]
+task packageToZip(type: Zip) {
+
+    archiveFileName = "archive.zip"    //最终生成的名字
+    destinationDirectory = file("$buildDir/zip")
+
+    from "src/main/java"
+//    into "classes"
+}
+
+// 注意：into 和 destinationDirectory 的区别：
+// destinationDirectory 是最终生成的zip文件的目录
+// into 是指将源目标合并到指定的文件名中，即源目标外面会多一层目录
+
+// 解压zip
+task unpackFiles(type: Copy) {
+    from zipTree("$buildDir/zip/archive.zip")
+    into "$buildDir/zip"
+}
+
+
+static def getCurrentDate() {
+    def calendar = new Date().toCalendar()
+    return "${calendar.get(Calendar.YEAR)}" + "${calendar.get(Calendar.MONTH) + 1}" + "${calendar.get(Calendar.DAY_OF_MONTH)}"
+}
+
+def jarName = "sdk"
+def jarType = "release"
+def jarVersion = "1.0.0"
+def jarDir = "$buildDir/jar"
+def archiveJarName = jarName + "_" + jarType + "_" + jarVersion + "_" + getCurrentDate() + ".jar"
+def archiveFatJarName = jarName + "_" + jarType + "_" + jarVersion + "_" + getCurrentDate() + "_fat.jar"
+
+
+// jar的名字结构：
+// [archiveBaseName]-[archiveAppendix]-[archiveVersion]-[archiveClassifier].[archiveExtension]
+task makeJar(type: Jar, dependsOn: build) {
+
+//    setArchivesBaseName sdkName     // 设置的是文件名，后缀名.jar会自动加上
+    archiveFileName = archiveJarName       // 设置的是文件名+后缀名
+
+
+//    destinationDir file(sdkDir)
+    destinationDirectory = file(jarDir)
+
+//    from "src/main/java"             //代码源码
+//    from(zipTree("libs/test.jar"))   //本地的jar包
+
+    //生成的classes,包含源代码和lib库中的文件(不包含远程依赖)
+    from zipTree("$buildDir/intermediates/aar_main_jar/release/classes.jar")
+    from fileTree(dir: 'src/main', includes: ['assets/**'])    //将assets目录打入jar包
+}
+
+
+// FatJar (UberJar)
+//注意：compile 只能打包 dependencies 代码块中使用 compile 的库，但是compile又报过时
+//目前已有的解决方法，但是未能找到特别优雅的方案
+// (目前通过自定义configurations 的方式解决 2020/12/25)
+// https://stackoverflow.com/questions/47910578/not-able-to-copy-configurations-dependencies-after-upgrading-gradle-plugin-for-a
+
+task makeFatJar(type: Jar, dependsOn: build) {
+
+//    setArchivesBaseName sdkName             // 设置的是文件名，后缀名.jar会自动加上
+    archiveFileName = archiveFatJarName       // 设置的是文件名+后缀名
+
+    //    destinationDir file(sdkDir)
+    destinationDirectory = file(jarDir)
+
+
+//    from "src/main/java"             //代码源码
+//    from(zipTree("libs/test.jar"))   //本地的jar包
+
+    //生成的classes,包含源代码和lib库中的文件(不包含远程依赖)
+//    from zipTree("$buildDir/intermediates/aar_main_jar/release/classes.jar")
+//    from fileTree(dir: 'src/main', includes: ['assets/**'])    //将assets目录打入jar包
+
+
+    from {
+        configurations.myFatJarDependency.collect {
+            println("${it.name}")
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+
+    //已过期
+//    from {
+//        configurations.compile.collect {
+//            println("${it.name}")
+//            it.isDirectory() ? it : zipTree(it)
+//        }
+//    }
+
+}
+
+

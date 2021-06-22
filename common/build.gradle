@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply from: "tasks.gradle" //自定义的task
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -18,9 +20,16 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+
+    // 自定义一个 configurations，用于打 FatJar
+    // https://stackoverflow.com/questions/47910578/not-able-to-copy-configurations-dependencies-after-upgrading-gradle-plugin-for-a
+    configurations {
+        myFatJarDependency
     }
 }
 
@@ -29,15 +38,20 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$kotlin_core_ktx"
 
+    api "androidx.appcompat:appcompat:$appcompat"
+    api "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    api "com.google.android.material:material:$material"
+
+    // Jetpack
+    api 'androidx.lifecycle:lifecycle-process:2.2.0'  // Lifecycle#ProcessLifecycleOwner
+
+
     //协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$coroutinesKTX"  //ViewModelScope
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$coroutinesKTX"    //LifeCycleScope
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$coroutinesKTX"
 
-    implementation "androidx.appcompat:appcompat:$appcompat"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
-    implementation "com.google.android.material:material:$material"
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary"
 
@@ -50,5 +64,10 @@ dependencies {
 
 
     api "com.github.bumptech.glide:glide:$glide"
+
+
+    //为自定义Configuration添加依赖，在打FatJar时使用
+    myFatJarDependency "com.squareup.retrofit2:retrofit:$retrofit"
+    myFatJarDependency "com.squareup.retrofit2:converter-gson:$converter_gson"
 
 }

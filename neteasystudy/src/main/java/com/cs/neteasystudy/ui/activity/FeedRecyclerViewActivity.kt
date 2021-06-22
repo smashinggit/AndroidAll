@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cs.common.base.BaseActivity
-import com.cs.common.log
 import com.cs.neteasystudy.R
 import kotlinx.android.synthetic.main.activity_floatrecyclerview.*
 import kotlinx.android.synthetic.main.item_feed.view.*

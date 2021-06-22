@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply from: 'tasks.gradle'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -16,16 +15,12 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
-    // 自定义一个 configurations，用于打 UberJar
-    // https://stackoverflow.com/questions/47910578/not-able-to-copy-configurations-dependencies-after-upgrading-gradle-plugin-for-a
-    configurations {
-        uberConfigurations
-    }
+
 }
 
 dependencies {
@@ -44,6 +39,4 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$coroutinesKTX"
 
 
-    // 注意，使用自定义的Configurations打UberJar,这里需要额外添加一遍依赖
-    uberConfigurations "com.squareup.retrofit2:retrofit:$retrofit"
 }

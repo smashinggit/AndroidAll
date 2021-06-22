@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.cmcc.jetpack.R
 import com.cs.common.base.BaseActivity
 import com.cs.common.http.State
-import com.cs.common.toast
 import com.cs.jetpack.adapter.BaseDataAdapter
 import com.cs.jetpack.paging.bean.Girl
 import com.cs.jetpack.paging.db.GirlDataBase
@@ -52,15 +51,15 @@ class PagingActivity : BaseActivity() {
 
             when (it.state) {
                 State.LOADING -> {
-                    toast("LOADING")
+//                    toast("LOADING")
                 }
                 State.SUCCESS -> {
-                    toast("SUCCESS")
+//                    toast("SUCCESS")
                     swipeRefreshLayout.isRefreshing = false
                     adapter.update(it.data!!)
                 }
                 State.ERROR -> {
-                    toast("ERROR ${it.message}")
+//                    toast("ERROR ${it.message}")
                     swipeRefreshLayout.isRefreshing = false
                 }
             }

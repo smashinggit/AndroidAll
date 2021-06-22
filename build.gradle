@@ -1,6 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: "versions.gradle"
 
+/**
+ * This block encapsulates custom properties and makes them available to all modules in the project.
+ */
+ext {
+    customValue = 30
+    customValue2 = "value2"
+}
+
+/**
+ * The buildScript block is where you configure the repositories and
+ * dependencies for Gradle itself—meaning, you should not include dependencies
+ * for your modules here
+ *
+ * For example, this block includes the Android plugin for Gradle as a dependency
+ * because it provides the additional instructions Gradle needs to build Android app modules.
+ */
 buildscript {
     ext.kotlin_version = "1.4.10"
     ext.greendao = "3.3.0"
@@ -9,7 +25,6 @@ buildscript {
         maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
         maven { url "https://maven.aliyun.com/nexus/content/groups/google" }
         google()
-        jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven {
@@ -28,12 +43,19 @@ buildscript {
     }
 }
 
+/**
+ * The allprojects block is where you configure the repositories and
+ * dependencies used by all modules in your project, such as third-party plugins
+ * or libraries. However, you should configure module-specific dependencies in
+ * each module-level build.gradle file. For new projects, Android Studio
+ * includes JCenter and Google's Maven repository by default, but it does not
+ * configure any dependencies (unless you select a template that requires some).
+ */
 allprojects {
     repositories {
         maven { url "https://maven.aliyun.com/nexus/content/groups/public" }
         maven { url "https://maven.aliyun.com/nexus/content/groups/google" }
         google()
-        jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
         maven {

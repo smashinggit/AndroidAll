@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.vlayout.LayoutHelper
-import com.cs.common.toast
 import com.cs.common.utils.log
 import com.cs.neteasystudy.R
 import com.youth.banner.adapter.BannerAdapter
@@ -34,7 +33,7 @@ class BannerAdapter(
             setBannerRound2(5f)
             isAutoLoop(true)
             setOnBannerListener { data, position ->
-                mContext.toast("轮播图 $position")
+//                mContext.toast("轮播图 $position")
             }
             start()
         }

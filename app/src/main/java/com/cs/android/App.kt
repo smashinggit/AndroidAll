@@ -1,6 +1,7 @@
 package com.cs.android
 
 import android.app.Application
+import androidx.lifecycle.ProcessLifecycleOwner
 import com.cs.android.greendao.DaoMaster
 import com.cs.android.greendao.DaoSession
 import com.cs.common.utils.SharedPreferencesUtils
@@ -12,6 +13,8 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        ProcessLifecycleOwner.get().lifecycle.addObserver(ProcessLifecycleObserver())
 
         SharedPreferencesUtils.init(this, packageName)
 

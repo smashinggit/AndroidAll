@@ -2,7 +2,6 @@ package com.cs.neteasystudy.ui.activity.taobao
 
 import android.content.Context
 import com.alibaba.android.vlayout.LayoutHelper
-import com.cs.common.toast
 import kotlinx.android.synthetic.main.vlayout_menu.view.*
 
 class MenuAdapter(
@@ -17,7 +16,7 @@ class MenuAdapter(
         holder.itemView.tv_menu_title_home.text = mData[position].title
         holder.itemView.iv_menu_home.setImageResource(mData[position].menu)
         holder.itemView.setOnClickListener {
-            mContext.toast("菜单 $position")
+//            mContext.toast("菜单 $position")
         }
     }
 

@@ -126,12 +126,14 @@
      - Hashtable
  
  - 3.5 异常
-
+ 
+## 四、 JVM
+[JVM](/docs/java/JVM.md)
 
 
 #  三、 Android 
 
-## 基础
+## 3.1 基础
   - 1.1 四大组件
    - [Activity](/docs/android/Activity.md)
    - [Service](/docs/android/Service.md)
@@ -143,7 +145,7 @@
 
 
 
-## 进阶
+## 3.2 进阶
   - 1.1 View显示过程   [详见UI.md](/docs/android/ui/Ui.md)
   - 1.2 View绘制流程    [详见UI.md](/docs/android/ui/Ui.md)
   - 1.3 View触摸事件传递  [详见UI.md](/docs/android/ui/Ui.md)
@@ -152,6 +154,10 @@
    - ObjectAnimator
    - valueAnimator
    
+## 3.3 Jetpack
+
+
+
    
 
 ## Android 性能优化  [详见Android.md](/summary/Android.md)
@@ -172,7 +178,15 @@
 
 ## NDK
 [NDK开发](/summary/NDK.md)
+
+
+
+## Gradle
+[Gradle总结](/docs/gradle/Gradle.md)
   
+## 混淆
+[混淆总结](/docs/android/Proguard.md)
+
 
 
 # 四、Kotlin (todo)

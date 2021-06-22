@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".webview.WebViewActivity2">
+        <activity android:name=".jetpack.JetpackActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
