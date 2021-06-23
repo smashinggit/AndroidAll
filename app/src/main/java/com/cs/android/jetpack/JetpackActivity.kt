@@ -1,6 +1,9 @@
 package com.cs.android.jetpack
 
 import android.os.Bundle
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModelProvider
 import com.cs.android.databinding.ActivityJetpackBinding
 import com.cs.android.jetpack.lifecycle.LifeCycleObserverImp
 import com.cs.android.jetpack.lifecycle.MyLifeCycleOwner
@@ -22,6 +25,10 @@ class JetpackActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(mBinding.root)
 
+        addLifecycleObserver()
+    }
+
+    private fun addLifecycleObserver() {
         lifecycle.addObserver(LifeCycleObserverImp())
     }
 

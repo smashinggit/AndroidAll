@@ -16,7 +16,7 @@
 # 二、Java 
 [详情见Java.md](/summary/Java.md)
 
-## 一、Java基础
+## 2.1、Java基础
  - 1.1 JVM
  - 1.2 基本数据类型
  - 1.3  自动装箱与拆箱
@@ -31,8 +31,8 @@
    - 
  - 1.7 ==和 equals 的区别
  - 1.8  深拷贝 vs 浅拷贝
- 
-## 二、 Java面向对象
+
+## 2.2、 Java面向对象
  - 2.1 构造器 Constructor 是否可被 override?
  - 2.2 在 Java 中定义一个不做事且没有参数的构造方法的作用
  - 2.3 对象实体与对象引用有何不同?
@@ -40,9 +40,9 @@
  - 2.5 面向对象三大特征 : 封装、继承、多态
  - 2.6 String 为什么是不可变的?
  - 2.7 String、StringBuffer 、StringBuilder 的区别是什么?
-  
- 
-## 三、 Java 核心技术
+
+
+## 2.3、 Java 核心技术
  - 3.1 反射 [详见/docs/java/Reflect.md](/docs/java/Reflect.md)
   - 概述
   - 获取 Class 对象
@@ -124,10 +124,10 @@
      - HashMap
      - LinkedHashMap
      - Hashtable
- 
+
  - 3.5 异常
- 
-## 四、 JVM
+
+## 2.4、 JVM
 [JVM](/docs/java/JVM.md)
 
 
@@ -153,8 +153,14 @@
   - 1.5 属性动画
    - ObjectAnimator
    - valueAnimator
-   
-## 3.3 Jetpack
+
+## 3.3 Jetpack 组件
+
+[LifeCycle](/docs/android/jetpack/LifeCycle.md)
+[LiveData](/docs/android/jetpack/LiveData.md)
+[ViewModel](/docs/android/jetpack/ViewModel.md)
+
+
 
 
 
@@ -165,7 +171,7 @@
   - 内存优化
   - 电量优化
   - APK瘦身
-  
+
 
 ## 数据库
   - GreenDao 
@@ -183,7 +189,7 @@
 
 ## Gradle
 [Gradle总结](/docs/gradle/Gradle.md)
-  
+
 ## 混淆
 [混淆总结](/docs/android/Proguard.md)
 
