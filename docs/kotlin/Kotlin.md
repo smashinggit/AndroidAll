@@ -477,31 +477,14 @@ interface Collection<E> …… {
 
 简而言之，**带 extends 限定（上界）的通配符类型使得类型是协变的（covariant）**。
 
-理解为什么这个技巧能够工作的关键相当简单：如果只能从集合中获取元素，那么使用 String 的集合， 并且从其中读
-取 Object 也没问题 。反过来，如果只能向集合中 放入 元素，就可以用 Object 集合并向其中放入 String：在 Java 
-中有 List<? super String> 是 List<Object> 的一个超类。
+理解为什么这个技巧能够工作的关键相当简单：
+如果只能从集合中获取元素，那么使用 String 的集合， 并且从其中读取 Object 也没问题 。
+反过来，如果只能向集合中 放入 元素，就可以用 Object 集合并向其中放入 String：
+在 Java 中有 List<? super String> 是 List<Object> 的一个超类。
 
 后者称为逆变性（contravariance），并且对于 List <? super String> 你只能调用接受 String 作为参数的方法 
 （例如，你可以调用 add(String) 或者 set(int, String)），当然如果调用函数返回 List<T> 中的 T，你得到的并
 非一个 String 而是一个 Object。
-
-
-
-
-
-
-
- 
- 
- 
- 
-
-
-
-
-
-
-
 
 
 

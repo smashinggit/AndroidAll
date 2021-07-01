@@ -39,7 +39,7 @@ class TestView : View {
 
 
     override fun onDraw(canvas: Canvas) {
-        canvas.drawRect(width / 2f, height / 2f, width / 2f + 200, height / 2f + 200, mPaint)
+        canvas.drawRect(0f, 0f, width.toFloat(), height.toFloat(), mPaint)
     }
 
     fun start() {

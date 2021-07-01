@@ -2,6 +2,17 @@
 (文章地址)[https://juejin.cn/post/6966526844552085512#heading-0]
 
 
+注意：
+在打jar/aar，开启混淆后，会发现打的jar/aar里面没有代码
+这是因为AS默认会把无用的包给清理掉，所以打的jar/aar包里面的文件应该是因为这个而被清理掉了
+
+解决办法是
+在module的proguard-rules.pro文件中添加一条指令 -dontshrink
+```
+-dontshrink   # 关闭压缩
+```
+
+
 # 一、混淆规则详解
 
 

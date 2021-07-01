@@ -150,9 +150,16 @@
   - 1.2 View绘制流程    [详见UI.md](/docs/android/ui/Ui.md)
   - 1.3 View触摸事件传递  [详见UI.md](/docs/android/ui/Ui.md)
   - 1.4 View滑动         [详见UI.md](/docs/android/ui/Ui.md)
+       - [ScrollTo、ScrollBy](/docs/android/ui/View滑动相关.md) 
+       - [Scroller](/docs/android/ui/View滑动相关.md) 
+       - [VelocityTracker](/docs/android/ui/View滑动相关.md) 
+       
   - 1.5 属性动画
-   - ObjectAnimator
-   - valueAnimator
+       - ObjectAnimator
+       - ValueAnimator
+   
+
+
 
 ## 3.3 Jetpack 组件
 

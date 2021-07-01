@@ -8,29 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import java.io.Serializable
 
-fun Context.screenWidth(): Int {
-    return resources.displayMetrics.widthPixels
-}
-
-fun Context.screenHeight(): Int {
-    return resources.displayMetrics.heightPixels
-}
-
-fun Context.dp2px(dp: Float): Int {
-    val density = resources.displayMetrics.density
-    return (dp * density + 0.5f).toInt()
-}
-
-fun Fragment.dp2px(dp: Float): Int {
-    val density = resources.displayMetrics.density
-    return (dp * density + 0.5f).toInt()
-}
-
-fun View.dp2px(dp: Float): Int {
-    val density = context.resources.displayMetrics.density
-    return (dp * density + 0.5f).toInt()
-}
-
 fun Context.log(msg: String) {
     Log.e("tag", msg)
 }
