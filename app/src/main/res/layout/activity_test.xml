@@ -4,9 +4,15 @@
     android:layout_height="match_parent">
 
 
-    <com.cs.android.view.TestView
+    <com.cs.android.view.FollowFingerBall
         android:id="@+id/testView"
-        android:background="#ff0"
-        android:layout_width="100dp"
-        android:layout_height="100dp"/>
+        android:layout_width="80dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/flag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="ParentCenter" />
 </RelativeLayout>

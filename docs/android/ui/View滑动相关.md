@@ -13,14 +13,211 @@
  如：button.offsetLeftAndRignt(300)表示将button控件向左移动300个像素。
 ```
 
+视图坐标系
+- View的left，top，right，bottom都是相对于父View而言的
+- MotionEvent的getX()、getY()的值是相对于当前触摸到的View的，getRawX()和getRawY()是相对于屏幕左侧和上侧的。
 
 
-#  一、scrollTo(),scrollBy(),getScrollX(), getScrollY()
+View滑动方式:
+1. layout()
+2. offsetLeftAndRight()、offsetTopAndBottom()
+3. translationX、translationY、动画
+4. setX()、setY()
+5. scrollTo()、scrollBy()
 
-scrollBy()方法是让View相对于当前的位置滚动某段距离，
-scrollTo()方法则是让View相对于初始的位置滚动某段距离
+
+
+## 一、layout()
+
+移动的是View的真实位置
+
+```
+ override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mLastX = event.x
+                mLastY = event.y
+            }
+            MotionEvent.ACTION_MOVE -> {
+                 //需要注意更改view的位置后会导致view的坐标系发生变化了，
+                //所以我们的计算的规则是和action_down初始值进行比较 
+                //而不用在这里加上 mLastX = event.x   mLastY = event.y
+                val dx = event.x - mLastX
+                val dy = event.y - mLastY
+
+                //更新view的left top right bottom
+                layout((left + dx).toInt(), (top + dy).toInt(), (right + dx).toInt(),
+                    (bottom + dy).toInt()
+                )
+            }
+        }
+        return super.onTouchEvent(event)
+    }
+```
+
+## 二、 offsetLeftAndRight()、offsetTopAndBottom()
+
+移动的是View的真实位置
+
+```
+ override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mLastX = event.x
+                mLastY = event.y
+            }
+            MotionEvent.ACTION_MOVE -> {
+                 //需要注意更改view的位置后会导致view的坐标系发生变化了，
+                //所以我们的计算的规则是和action_down初始值进行比较 
+                //而不用在这里加上 mLastX = event.x   mLastY = event.y
+                val dx = event.x - mLastX
+                val dy = event.y - mLastY
+
+                offsetLeftAndRight(dx.toInt())
+                offsetTopAndBottom(dy.toInt())
+            }
+        }
+        return super.onTouchEvent(event)
+    }
+```
+
+
+# 三、translationX、translationY、属性动画
+移动的是View的真实位置
+
+```
+ override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mLastX = event.x
+                mLastY = event.y
+            }
+            MotionEvent.ACTION_MOVE -> {
+                 //需要注意更改view的位置后会导致view的坐标系发生变化了，
+                //所以我们的计算的规则是和action_down初始值进行比较 
+                //而不用在这里加上 mLastX = event.x   mLastY = event.y
+                val dx = event.x - mLastX
+                val dy = event.y - mLastY
+
+                translationX += dx
+                translationY += dy
+            }
+        }
+        return super.onTouchEvent(event)
+    }
+```
+
+
+# 四、setX()、setY()
+
+移动的是View的真实位置
+
+setX()源码：
+```
+    /**
+     * Sets the visual x position of this view, in pixels. This is equivalent to setting the
+     * {@link #setTranslationX(float) translationX} property to be the difference between
+     * the x value passed in and the current {@link #getLeft() left} property.
+     *
+     * @param x The visual x position of this view, in pixels.
+     */
+    public void setX(float x) {
+        setTranslationX(x - mLeft);
+    }
+```
+
+```
+ override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mLastX = event.x
+                mLastY = event.y
+            }
+            MotionEvent.ACTION_MOVE -> {
+                //需要注意更改view的位置后会导致view的坐标系发生变化了，
+                //所以我们的计算的规则是和action_down初始值进行比较 
+                //而不用在这里加上 mLastX = event.x   mLastY = event.y
+                val dx = event.x - mLastX
+                val dy = event.y - mLastY
+
+                x += dx
+                y += dy
+            }
+        }
+        return super.onTouchEvent(event)
+    }
+```
+
+# 五、scrollTo()、scrollBy()
+
+scrollTo(x,y)是滑动到一个具体值，
+而scrollBy(x,y)是滑动增量的x、y，其内部调用的还是scrollTo():
 
 scrollTo(int x, int y) 是将 **View中内容**滑动到相应的位置，参考的坐标系原点为parent View的左上角。
+
+scrollTo()滑动的到底是个啥？
+实际上从源码里面找mScrollX、mScrollY的引用，可以知道这两个值影响的是画布canvas的位移，所以我们看到现象就是：
+- **view调用scrollTo移动的是自己的内容**，比如textView移动了text，imageView移动了图片
+- **viewGroup移动的是自己的children**
+
+
+```
+ override fun onTouchEvent(event: MotionEvent): Boolean {
+        when (event.action) {
+            MotionEvent.ACTION_DOWN -> {
+                mLastX = event.x
+                mLastY = event.y
+            }
+            MotionEvent.ACTION_MOVE -> {
+                 //需要注意更改view的位置后会导致view的坐标系发生变化了，
+                //所以我们的计算的规则是和action_down初始值进行比较 
+                //而不用在这里加上 mLastX = event.x   mLastY = event.y
+                val dx = event.x - mLastX
+                val dy = event.y - mLastY
+
+                //方式5
+                (parent as ViewGroup).scrollBy(-dx.toInt(), -dy.toInt())
+
+                // 方式6     
+                //如果是view自身位置不改变，只改变了其中的内容
+                //就必须加上  mLastX = event.x   mLastY = event.y
+                scrollBy(-dx.toInt(), -dy.toInt())
+                mLastX = event.x
+                mLastY = event.y
+
+            }
+        }
+        return super.onTouchEvent(event)
+    }
+```
+
+在自定义View 继承自 View 的情形下
+注意：
+如果使用 
+```
+(parent as ViewGroup).scrollBy(-dx.toInt(), -dy.toInt())
+```
+代表的是： 使父View的内容进行移动，此时自定义View就会实现跟随手指移动(包含此View的内容和background，
+因为实质上移动的是父view的canvas)
+
+
+如果使用 
+ ```
+                scrollBy(-dx.toInt(), -dy.toInt())
+                mLastX = event.x
+                mLastY = event.y
+```
+代表的是此自定义View本身并不移动，而是移动的自身内容，
+此时跟随手指移动的只有view的内容，view的background不会移动
+
+
+
+
+
+
+
+
+
 
 
 [scrollX](/pics/android/view/scrollX.png)
@@ -85,6 +282,18 @@ VelocityTracker 是一个根据我们手指的触摸事件，计算出滑动速�
 
 
 
+# 四、GestureDetector 
+
+
+```
+  override fun onTouchEvent(event: MotionEvent?): Boolean {
+          mGestureDetector.onTouchEvent(event)
+        return true  //返回true才能完整接收触摸事件
+    }
+```
+
+
 # 实战代码
 
 [BarChart](/app/src/main/java/com/cs/android/view/BarChart.kt)
+[FollowFingerBall](/app/src/main/java/com/cs/android/view/FollowFingerBall.kt)

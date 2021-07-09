@@ -134,14 +134,28 @@
 #  三、 Android 
 
 ## 3.1 基础
-  - 1.1 四大组件
-   - [Activity](/docs/android/Activity.md)
-   - [Service](/docs/android/Service.md)
-   - content provider
-   - broadcast receiver
 
-  - 1.2 [Handler](/docs/android/Handler.md)
-  - [Android 签名](/docs/android/signature.md)
+  - 3.1.1 四大组件
+     - [Activity](/docs/android/Activity.md)
+     - [Service](/docs/android/Service.md)
+     - content provider
+     - broadcast receiver
+
+  - 3.1.2 混淆与签名
+     - [Android 签名](/docs/android/signature.md)
+     - [混淆总结](/docs/android/Proguard.md)
+     
+  - 3.1.3 版本更新 && 下载 && 安装
+     - todo
+  
+  - 3.1.4 存储相关
+     - [内部存储](/docs/android/base/Storage.md)
+     - [外部存储](/docs/android/base/Storage.md)
+     - 
+     
+  - 3.1.5 Handler
+     - [Handler](/docs/android/Handler.md)
+     
 
 
 
@@ -196,9 +210,6 @@
 
 ## Gradle
 [Gradle总结](/docs/gradle/Gradle.md)
-
-## 混淆
-[混淆总结](/docs/android/Proguard.md)
 
 
 
