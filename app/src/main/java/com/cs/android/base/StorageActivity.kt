@@ -33,7 +33,7 @@ class StorageActivity : AppCompatActivity() {
             append("externalCacheDir      : ${externalCacheDir?.absolutePath} \n \n")
             append("externalCacheDirs     : ${sprite(externalCacheDirs)} \n")
             append("externalMediaDirs     : ${sprite(externalMediaDirs)} \n")
-            append("obbDir       : ${obbDir.absolutePath} \n \n")
+            append("getExternalFilesDir(null)    : ${getExternalFilesDir(null)} \n \n")
             append("DIRECTORY_DCIM        : ${getExternalFilesDir(Environment.DIRECTORY_DCIM)} \n \n")
             append("DIRECTORY_PICTURES    : ${getExternalFilesDir(Environment.DIRECTORY_PICTURES)} \n \n")
             append(

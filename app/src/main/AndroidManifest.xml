@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".base.StorageActivity">
+        <activity android:name=".base.DevicesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -9,3 +9,25 @@
 
 
 
+
+# 清理缓存、清除数据、卸载App
+
+- 清理缓存
+
+**清空**以下目录的数据：
+data/data/packagename/cache
+sdcard/Android/data/packagename/cache
+
+
+- 清除数据
+
+**清空**以下目录的数据：
+data/data/packagename
+sdcard/Android/data/packagename
+
+
+- 卸载App
+
+**删除**以下目录:
+data/data/packagename
+sdcard/Android/data/packagename

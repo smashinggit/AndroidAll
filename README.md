@@ -151,31 +151,53 @@
   - 3.1.4 存储相关
      - [内部存储](/docs/android/base/Storage.md)
      - [外部存储](/docs/android/base/Storage.md)
+     - [清除数据、清理缓存、卸载App](/docs/android/base/Storage.md)
      - 
      
   - 3.1.5 Handler
      - [Handler](/docs/android/Handler.md)
      
-
+  - 3.1.6 设备硬件、软件相关信息   
+     - [Devices](/common/src/main/java/com/cs/common/utils/Devices.kt)
+     
 
 
 ## 3.2 进阶
-  - 1.1 View显示过程   [详见UI.md](/docs/android/ui/Ui.md)
-  - 1.2 View绘制流程    [详见UI.md](/docs/android/ui/Ui.md)
-  - 1.3 View触摸事件传递  [详见UI.md](/docs/android/ui/Ui.md)
-  - 1.4 View滑动         [详见UI.md](/docs/android/ui/Ui.md)
+  - 3.2.1 View显示过程   [详见UI.md](/docs/android/ui/Ui.md)
+  - 3.2.2 View绘制流程    [详见UI.md](/docs/android/ui/Ui.md)
+  - 3.2.3 View触摸事件传递  [详见UI.md](/docs/android/ui/Ui.md)
+  - 3.2.4 View滑动         [详见UI.md](/docs/android/ui/Ui.md)
        - [ScrollTo、ScrollBy](/docs/android/ui/View滑动相关.md) 
        - [Scroller](/docs/android/ui/View滑动相关.md) 
        - [VelocityTracker](/docs/android/ui/View滑动相关.md) 
        
-  - 1.5 属性动画
+  - 3.2.5 属性动画
        - ObjectAnimator
        - ValueAnimator
-   
+       
+  - 3.2.6 数据库     
+       - GreenDao 
+       - Room
+       
 
+   - 按下Home键 && 生命周期
+      [todo] (todo)
+      
 
+## 3.3 高级
 
-## 3.3 Jetpack 组件
+  - 3.3.1 [NDK开发](/summary/NDK.md)
+  - 3.3.2 [组件化](/summary/Modularization.md)  
+  - 3.3.3 Android 性能优化  [详见Android.md](/summary/Android.md)
+       - UI优化
+       - 内存优化
+       - 电量优化
+       - APK瘦身
+    
+    
+    
+    
+## 3.4 Jetpack 组件
 
 [LifeCycle](/docs/android/jetpack/LifeCycle.md)
 [LiveData](/docs/android/jetpack/LiveData.md)
@@ -183,32 +205,7 @@
 
 
 
-
-
-   
-
-## Android 性能优化  [详见Android.md](/summary/Android.md)
-  - UI优化
-  - 内存优化
-  - 电量优化
-  - APK瘦身
-
-
-## 数据库
-  - GreenDao 
-  - Room
-  
-    
-## 组件化  
-[组件化](/summary/Modularization.md)
-
-
-## NDK
-[NDK开发](/summary/NDK.md)
-
-
-
-## Gradle
+## 3.5 Gradle
 [Gradle总结](/docs/gradle/Gradle.md)
 
 
@@ -251,6 +248,27 @@ in 相当于java里面的 <? super>
 
 # 七、算法
 [算法](summary/Algorithm.md)
+
+
+
+# 八、Git
+
+
+
+
+
+# 九、其他
+
+## 网络相关
+
+
+### 弱网模拟
+- [Windows平台：Clumsy](/docs/http/windows&android弱网模拟.md)
+- [Android: QNET](/docs/http/windows&android弱网模拟.md)
+
+
+### 抓包
+- WireShark
 
 
 
