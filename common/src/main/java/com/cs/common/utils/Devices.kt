@@ -11,7 +11,7 @@ import java.util.*
  * @since 2021/7/12 15:35
  * @desc
  */
-object Devices {+
+object Devices {
 
     /**
      * 获取 AndroidId

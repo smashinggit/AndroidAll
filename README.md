@@ -1,6 +1,18 @@
+[toc]
+
 # 简介
 
-此工程记录了 Java 和 Android 相关的知识点，既可以做一个整体的梳理，也可以专项查漏补缺
+此工程是一个总结性的工程，涵盖了计算机基础、Java、Android、数据结构、算法、设计模式等知识点。
+目前还在不断完善中
+
+工程目录结构：
+- app        Android默认工程，里面是一些Android相关的代码
+- common     公用类库
+- todo       数据结构、算法、设计模式 的相关代码
+- pics       存放相关知识点的图片
+- docs       存放所有的总结性文档(重点)
+
+
 
 
 
@@ -196,7 +208,6 @@
     
     
     
-    
 ## 3.4 Jetpack 组件
 
 [LifeCycle](/docs/android/jetpack/LifeCycle.md)
@@ -209,14 +220,10 @@
 [Gradle总结](/docs/gradle/Gradle.md)
 
 
+# 四、Kotlin 
 
-# 四、Kotlin (todo)
+[Kotlin](/docs/kotlin/Kotlin.md)
 
-kotlin里面的out,in的简单理解:
-out 相当于java里面的 <? extend>
-in 相当于java里面的 <? super>
-
-[Kotlin](/summary/Kotlin.md)
 
 
 # 五、设计模式  
@@ -274,7 +281,9 @@ in 相当于java里面的 <? super>
 
 # 面试题
 [Java面试题总结](/summary/Interview_Java.md)
+
 [Android面试题总结一](/summary/Interview_android.md)
+
 [Android面试题总结二](/summary/Interview_android2.md)
 
 
