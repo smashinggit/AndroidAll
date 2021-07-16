@@ -88,185 +88,10 @@ int hex =  0x64;
 - return ：用于跳出所在方法，结束该方法的运行
 
 
-## 1.5 泛型
-
-Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了**编译时类型安全检测机制**，
-该机制允许程序员在编译时检测到非法的类型。
-泛型的本质是参数化类型，也就是说所操作的数据类型被指定为一个参数
-
-**Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 **
-```
-List<Integer> list = new ArrayList<>();
-
-list.add(12);
-//这里直接添加会报错
-list.add("a");
-
-Class<? extends List> clazz = list.getClass();
-Method add = clazz.getDeclaredMethod("add", Object.class);
-//但是通过反射添加，是可以的
-add.invoke(list, "kl");
-
-System.out.println(list)
-```
-
-## 1.6 泛型通配符
-
-常用的通配符为： T，E，K，V，？
-
-- ？ 表示不确定的 java 类型
-- T (type) 表示具体的一个 java 类型
-- K V (key value) 分别代表 java 键值中的 Key Value
-- E (element) 代表 Element
 
 
-### ？无界通配符
 
-```
-static int countLegs (List<? extends Animal > animals ) {
-    int retVal = 0;
-    for ( Animal animal : animals ) {
-        retVal += animal.countLegs();
-    }
-    return retVal;
-}
-
-static int countLegs1 (List< Animal > animals ){
-    int retVal = 0;
-    for ( Animal animal : animals ){
-        retVal += animal.countLegs();
-    }
-    return retVal;
-}
-
-public static void main(String[] args) {
-    List<Dog> dogs = new ArrayList<>();
- 	// 不会报错
-    countLegs( dogs );
-	// 报错
-    countLegs1(dogs);
-}
-
-```
-当调用 countLegs1 时，就会报错
-
-**对于不确定或者不关心实际要操作的类型**，可以使用无限制通配符（尖括号里一个问号，即 <?> ），
-表示可以持有任何类型
-
-###  上界通配符 < ? extends E>
-上届：用 extends 关键字声明，表示**参数化的类型可能是所指定的类型，或者是此类型的子类**
-
-- 如果传入的类型不是 E 或者 E 的子类，编译不成功
-- 泛型中可以使用 E 的方法，要不然还得强转成 E 才能使用
-
-```
-private <K extends A, E extends B> E test(K arg1, E arg2){
-    E result = arg2;
-    arg2.compareTo(arg1);
-    //.....
-    return result;
-}
-```
-
-> 类型参数列表中如果有多个类型参数上限，用逗号分开
-
-### 下界通配符 < ? super E>
-下界: 用 super 进行声明，表示**参数化的类型可能是所指定的类型，或者是此类型的父类型，直至 Object**
-
-在类型参数中使用 super 表示**这个泛型中的参数必须是 E 或者 E 的父类**
-
-```
-private <T> void test(List<? super T> dst, List<T> src){
-    for (T t : src) {
-        dst.add(t);
-    }
-}
-
-public static void main(String[] args) {
-    List<Dog> dogs = new ArrayList<>();
-    List<Animal> animals = new ArrayList<>();
-    new Test3().test(animals,dogs);
-}
-
-// Dog 是 Animal 的子类
-class Dog extends Animal {
-}
-
-```
-dst 类型 “大于等于” src 的类型，这里的“大于等于”是指 dst 表示的范围比 src 要大，
-因此装得下 dst 的容器也就能装 src
-
-### ？ 和 T 的区别
-
-```
-//元素的类型必须是T
-List<T> list = new ArrayList<T>();
-//元素可以是任何类型的，
-List<?> list = new ArrayList<?>();
-```
-
-？和 T 都表示不确定的类型，区别在于我们**可以对 T 进行操作，但是对 ？ 不行**，
-
-比如如下这种 ：
-```
-// 可以
-T t = operate();
-
-// 不可以
-？ car = operate();
-```
-
-T 是一个 确定的 类型，通常用于泛型类和泛型方法的定义，
-？是一个 不确定 的类型，通常用于泛型方法的调用代码和形参，不能用于定义类和泛型方法
-
-```
-// 通过 T 来 确保 泛型参数的一致性
-public <T extends Number> void test(List<T> dest, List<T> src)
-
-//通配符是 不确定的，所以这个方法不能保证两个 List 具有相同的元素类型
-public void test(List<? extends Number> dest, List<? extends Number> src)
-
-```
-
-**通配符可以使用超类限定而类型参数不行**
-
-类型参数 T 只具有 一种 类型限定方式:
-```
-T extends A
-```
-
-但是通配符 ? 可以进行 两种限定：
-```
-? extends A
-? super A
-```
-
-### Class<T> 和 Class<?> 区别
-
-Class<T> 在实例化的时候，T 要替换成具体类。
-Class<?> 它是个通配泛型，? 可以代表任何类型，所以主要用于声明时的限制情况
-
-```
-// 可以
-public Class<?> clazz;
-
-// 不可以，因为 T 需要指定类型
-public Class<T> clazzT;
-```
-
-所以当不知道定声明什么类型的 Class 的时候可以定义一 个Class<?>
-
-那如果也想 public Class<T> clazzT; 这样的话，就必须让当前的类也指定 T ，
-```
-public class Test3<T> {
-    public Class<?> clazz;
-    // 不会报错
-    public Class<T> clazzT;
-
-```
-
-
-## 1.7 ==和 equals 的区别
+## 1.5 ==和 equals 的区别
 
 - == : 它的作用是**判断两个对象的地址是不是相等**,即判断两个对象是不是同一个对象。
 
@@ -321,15 +146,13 @@ String 中的 equals 方法是被重写过的，
 
 
 
-## 1.8  深拷贝 vs 浅拷贝
+## 1.6  深拷贝 vs 浅拷贝
 - 浅拷贝：对基本数据类型进行值传递，对引用数据类型进行**引用传递**般的拷贝，此为浅拷贝。
 - 深拷贝：对基本数据类型进行值传递，对引用数据类型，**创建一个新的对象，并复制其内容**，此为深拷贝。
 
 
 
 
-
-# 二、 Java面向对象
 
 ## 2.1 构造器 Constructor 是否可被 override?
 
@@ -374,8 +197,8 @@ Java 程序在执行子类的构造方法之前，**如果没有用 super()来�
 2. 引用类型变量发出的方法调用的到底是哪个类中的方法，必须在程序运行期间才能确定；
 3. 多态不能调用“只在子类存在但在父类不存在”的方法；
 4. 如果子类重写了父类的方法，真正执行的是子类覆盖的方法，如果子类没有覆盖父类的方法，执行的是父类的方法
- 
- 
+
+
 ## 2.6 String 为什么是不可变的?
 
 String 类中使用 final 关键字修饰字符数组来保存字符串，private final char value[]，所以 String 对象是不可变的。
@@ -384,13 +207,13 @@ String 类中使用 final 关键字修饰字符数组来保存字符串，privat
 
 
 ## 2.7  String、StringBuffer 、StringBuilder 的区别是什么?
- 
+
 StringBuilder 与 StringBuffer 都继承自 AbstractStringBuilder 类，
 在 AbstractStringBuilder 中也是使用字符数组保存字符串 char[] value 
 **但是没有用 final 关键字修饰，所以这两种对象都是可变的**
 
 ### 线程安全性
- 
+
 - String 中的对象是不可变的，也就可以理解为常量，线程安全
 - StringBuffer 对方法加了**同步锁或者对调用的方法加了同步锁**，所以是线程安全的
 - StringBuilder 并没有对方法进行加同步锁，所以是非线程安全的
@@ -408,54 +231,8 @@ StringBuilder 与 StringBuffer 都继承自 AbstractStringBuilder 类，
 1. 操作少量的数据: 适用 String
 2. 单线程操作字符串缓冲区下操作大量数据: 适用 StringBuilder
 3. 多线程操作字符串缓冲区下操作大量数据: 适用 StringBuffer
- 
- 
-
-# 三、 Java 核心技术
-
-## 3.1 反射
-
-![详见/docs/java/Reflect.md](/docs/java/Reflect.md)
-
-JAVA 反射机制是在运行状态中，
-对于任意一个类，都能够知道这个类的所有属性和方法；
-对于任意一个对象，都能够调用它的任意一个方法和属性；
-这种动态获取的信息以及动态调用对象的方法的功能称为 java 语言的反射机制
 
 
-### 反射机制优缺点
-优点： 运行期类型的判断，动态加载类，提高代码灵活度。
-缺点： 
-1,性能瓶颈：反射相当于一系列解释操作，通知 JVM 要做的事情，性能比直接的 java 代码要慢很多。
-2,安全问题，让我们可以动态操作改变类的属性同时也增加了类的安全隐患。
-
-
-### 反射的应用场景
-
-反射是框架设计的灵魂
-在我们平时的项目开发过程中，基本上很少会直接使用到反射机制，但这不能说明反射机制没有用，
-实际上有很多设计、开发都与反射机制有关，例如模块化的开发，通过反射去调用对应的字节码；动态代理设计模式也采用了反射机制
-
-
-## 3.2  多线程
-
-### 简述线程、程序、进程的基本概念。以及他们之间关系是什么?
-
-程序是含有指令和数据的文件，被存储在磁盘或其他的数据存储设备中，也就是说程序是静态的代码
-
-进程是程序的一次执行过程，是系统运行程序的基本单位，因此进程是动态的。系统运行一个程序即是一个进程从创建，运行到消亡的过程。
-简单来说，一个进程就是一个执行中的程序，它在计算机中一个指令接着一个指令地执行着，
-同时，每个进程还占有某些系统资源如 CPU 时间，内存空间，文件，输入输出设备的使用权等
-
-线程与进程相似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程。
-与进程不同的是同类的多个线程共享同一块内存空间和一组系统资源，
-所以系统在产生一个线程，或是在各个线程之间作切换工作时，负担要比进程小得多，
-也正因为如此，线程也被称为轻量级进程
-
-
-### 重点：多线程并发
-
-![详见/docs/java/Thread.md](/docs/java/Thread.md) 
 
 
 
@@ -498,70 +275,335 @@ Java容器类库的主要用途是持有对象，通常两种不同的数据结�
 - Collection，独立元素的序列，这些元素都服从一条或多条规则。List、Set以及Queue都是Collection的一种，
 
 - Map , 存储的是“键值对”对象，通过键来检索值
-Map：以Key-Value形式存储, key不可重复 value可以重复
+  Map：以Key-Value形式存储, key不可重复 value可以重复
 
 ### 3.4.2 List
+
 有序的 collection（也称为序列）。此接口的用户可以对列表中每个元素的插入位置进行精确地控制。
 用户可以根据元素的整数索引（在列表中的位置）访问元素，并搜索列表中的元素。
 与 set 不同，列表通常允许重复的元素
 
 - ArrayList<E>
-List 接口的大小可变数组的实现。实现了所有可选列表操作，并允许包括 null 在内的所有元素
-线程不安全
+  List 接口的大小可变数组的实现。实现了所有可选列表操作，并允许包括 null 在内的所有元素
+  线程不安全
 
 - LinkedList<E>
-List 接口的链接列表实现
-线程不安全
+  List 接口的链接列表实现
+  线程不安全
 
 - Vector<E>
-Vector 类可以实现可增长的对象数组
-线程安全
+  Vector 类可以实现可增长的对象数组
+  线程安全
 
 ### 3.4.3 Set
 
 个不包含重复元素的 collection
 
 - HashSet<E>
-此类实现 Set 接口，由哈希表（实际上是一个 HashMap 实例）支持
-线程不安全
+  此类实现 Set 接口，由哈希表（实际上是一个 HashMap 实例）支持
+  线程不安全
 
 - LinkedHashSet<E>
-具有可预知迭代顺序的 Set 接口的哈希表和链接列表实现。
-此实现与 HashSet 的不同之外在于，后者维护着一个运行于所有条目的双重链接列表
-线程不安全
+  具有可预知迭代顺序的 Set 接口的哈希表和链接列表实现。
+  此实现与 HashSet 的不同之外在于，后者维护着一个运行于所有条目的双重链接列表
+  线程不安全
 
 - TreeSet<E>
-基于 TreeMap 的 NavigableSet 实现。使用元素的自然顺序对元素进行排序，
-或者根据创建 set 时提供的 Comparator 进行排序，具体取决于使用的构造方法
-线程不安全
+  基于 TreeMap 的 NavigableSet 实现。使用元素的自然顺序对元素进行排序，
+  或者根据创建 set 时提供的 Comparator 进行排序，具体取决于使用的构造方法
+  线程不安全
 
 
 ### 3.4.4 Queue
+
 在处理元素前用于保存元素的 collection。除了基本的 Collection 操作外，队列还提供其他的插入、提取和检查操作
 
 - ArrayDeque<E>
-Deque 接口的大小可变数组的实现。数组双端队列没有容量限制；它们可根据需要增加以支持使用。
-线程不安全的
+  Deque 接口的大小可变数组的实现。数组双端队列没有容量限制；它们可根据需要增加以支持使用。
+  线程不安全的
 
 
 ### 3.4.5 Map
+
 将键映射到值的对象。一个映射不能包含重复的键；每个键最多只能映射到一个值
 
 - HashMap<K,V>
-基于哈希表的 Map 接口的实现
-线程不安全
-
+  基于哈希表的 Map 接口的实现
+  线程不安全
 - LinkedHashMap<K,V>
-Map 接口的哈希表和链接列表实现，具有可预知的迭代顺序
-线程不安全
-
+  Map 接口的哈希表和链接列表实现，具有可预知的迭代顺序
+  线程不安全
 - Hashtable<K,V>
-此类实现一个哈希表，该哈希表将键映射到相应的值
-线程安全
-
+  此类实现一个哈希表，该哈希表将键映射到相应的值
+  线程安全
 - TreeMap<K,V>
-基于红黑树（Red-Black tree）的 NavigableMap 实现
-线程不安全的
+  基于红黑树（Red-Black tree）的 NavigableMap 实现
+  线程不安全的
+
+
+
+***
+
+ 
+
+# 二、进阶
+
+## 2.1 泛型
+
+
+
+### 2.1.1 概述
+
+Java 泛型（generics）是 JDK 5 中引入的一个新特性, 泛型提供了**编译时类型安全检测机制**，
+该机制允许程序员在编译时检测到非法的类型。
+**泛型的本质是参数化类型**，也就是说所操作的数据类型被指定为一个参数
+
+```
+List<Integer> list = new ArrayList<>();
+
+list.add(12);
+//这里直接添加会报错
+list.add("a");
+
+Class<? extends List> clazz = list.getClass();
+Method add = clazz.getDeclaredMethod("add", Object.class);
+//但是通过反射添加，是可以的
+add.invoke(list, "kl");
+
+System.out.println(list)
+```
+
+**Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 **
+
+Java中的泛型，只在编译阶段有效。在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦除，并且在对象进入和离开方法的边界处添加类型检查和类型转换的方法。也就是说，泛型信息不会进入到运行时阶段
+
+### 2.1.2  泛型通配符
+
+常用的通配符为： T，E，K，V，？
+
+- ？ 表示不确定的 java 类型
+- T (type) 表示具体的一个 java 类型
+- K V (key value) 分别代表 java 键值中的 Key Value
+- E (element) 代表 Element
+
+
+
+#### 无界通配符  ？
+
+
+
+```
+static int countLegs (List<? extends Animal > animals ) {
+    int retVal = 0;
+    for ( Animal animal : animals ) {
+        retVal += animal.countLegs();
+    }
+    return retVal;
+}
+
+static int countLegs1 (List< Animal > animals ){
+    int retVal = 0;
+    for ( Animal animal : animals ){
+        retVal += animal.countLegs();
+    }
+    return retVal;
+}
+
+public static void main(String[] args) {
+    List<Dog> dogs = new ArrayList<>();
+ 	// 不会报错
+    countLegs(dogs);
+	// 报错
+    countLegs1(dogs);
+}
+
+```
+
+当调用 countLegs1 时，就会报错
+
+**对于不确定或者不关心实际要操作的类型**，可以使用无限制通配符（尖括号里一个问号，即 <?> ），
+表示可以持有任何类型
+
+
+
+#### 上界通配符 <? extends E>
+
+上界：用 extends 关键字声明，表示**参数化的类型可能是所指定的类型，或者是此类型的子类**
+
+- 如果传入的类型不是 E 或者 E 的子类，编译不成功
+- 泛型中可以使用 E 的方法，要不然还得强转成 E 才能使用
+
+```
+private <K extends A, E extends B> E test(K arg1, E arg2){
+    E result = arg2;
+    arg2.compareTo(arg1);
+    //.....
+    return result;
+}
+```
+
+> 类型参数列表中如果有多个类型参数上限，用逗号分开
+
+
+
+#### 下界通配符  <? super E>
+
+下界: 用 super 进行声明，表示 **参数化的类型可能是所指定的类型，或者是此类型的父类型，直至 Object**
+
+在类型参数中使用 super 表示 **这个泛型中的参数必须是 E 或者 E 的父类**
+
+```
+private <T> void test(List<? super T> dst, List<T> src){
+    for (T t : src) {
+        dst.add(t);
+    }
+}
+
+public static void main(String[] args) {
+    List<Dog> dogs = new ArrayList<>();
+    List<Animal> animals = new ArrayList<>();
+    new Test3().test(animals,dogs);
+}
+
+// Dog 是 Animal 的子类
+class Dog extends Animal {
+}
+
+```
+
+dst 类型 “大于等于” src 的类型，这里的“大于等于”是指 dst 表示的范围比 src 要大，
+因此装得下 dst 的容器也就能装 src
+
+
+
+### 2.1.3 ? 和 T 的区别
+
+```
+//元素的类型必须是T
+List<T> list = new ArrayList<T>();
+//元素可以是任何类型的
+List<?> list = new ArrayList<?>();
+```
+
+？和 T 都表示不确定的类型，区别在于我们 **可以对 T 进行操作，但是对 ？不行**，
+
+比如如下这种 ：
+
+```
+// 可以
+T t = operate();
+
+// 不可以
+？ car = operate();
+```
+
+**T 是一个 确定的 类型，通常用于泛型类和泛型方法的定义**，
+**？是一个 不确定 的类型，通常用于泛型方法的调用代码和形参，不能用于定义类和泛型方法**
+
+```
+// 通过 T 来 确保 泛型参数的一致性
+public <T extends Number> void test(List<T> dest, List<T> src)
+
+//通配符是 不确定的，所以这个方法不能保证两个 List 具有相同的元素类型
+public void test(List<? extends Number> dest, List<? extends Number> src)
+
+```
+
+**通配符可以使用超类限定而类型参数不行**
+
+类型参数 T 只具有 一种类型限定方式:
+
+```
+T extends A
+```
+
+但是通配符 ? 可以进行 两种限定：
+
+```
+? extends A
+? super A
+```
+
+
+
+### 2.1.4 Class<T> 和 Class<?> 的区别
+
+Class<T> 在实例化的时候，T 要替换成具体类。
+Class<?> 它是个通配泛型，? 可以代表任何类型，所以主要用于声明时的限制情况
+
+```
+// 可以
+public Class<?> clazz;
+
+// 不可以，因为 T 需要指定类型
+public Class<T> clazzT;
+```
+
+所以当不知道定声明什么类型的 Class 的时候可以定义一 个Class<?>
+
+那如果也想 public Class<T> clazzT; 这样的话，就必须让当前的类也指定 T ，
+
+```
+public class Test3<T> {
+    public Class<?> clazz;
+    // 不会报错
+    public Class<T> clazzT;
+
+```
+
+### 2.1.5 型变
+
+Java 中的泛型是**不型变的**，这意味着 `List<String>` **不是** `List<Object>` 的子类型
+
+
+
+
+
+## 3.1 反射
+
+![详见/docs/java/Reflect.md](../../docs/java/Reflect.md)
+
+JAVA 反射机制是在运行状态中，
+对于任意一个类，都能够知道这个类的所有属性和方法；
+对于任意一个对象，都能够调用它的任意一个方法和属性；
+这种动态获取的信息以及动态调用对象的方法的功能称为 java 语言的反射机制
+
+
+### 反射机制优缺点
+优点： 运行期类型的判断，动态加载类，提高代码灵活度。
+缺点： 
+1,性能瓶颈：反射相当于一系列解释操作，通知 JVM 要做的事情，性能比直接的 java 代码要慢很多。
+2,安全问题，让我们可以动态操作改变类的属性同时也增加了类的安全隐患。
+
+
+### 反射的应用场景
+
+反射是框架设计的灵魂
+在我们平时的项目开发过程中，基本上很少会直接使用到反射机制，但这不能说明反射机制没有用，
+实际上有很多设计、开发都与反射机制有关，例如模块化的开发，通过反射去调用对应的字节码；动态代理设计模式也采用了反射机制
+
+
+## 3.2  多线程
+
+### 简述线程、程序、进程的基本概念。以及他们之间关系是什么?
+
+程序是含有指令和数据的文件，被存储在磁盘或其他的数据存储设备中，也就是说程序是静态的代码
+
+进程是程序的一次执行过程，是系统运行程序的基本单位，因此进程是动态的。系统运行一个程序即是一个进程从创建，运行到消亡的过程。
+简单来说，一个进程就是一个执行中的程序，它在计算机中一个指令接着一个指令地执行着，
+同时，每个进程还占有某些系统资源如 CPU 时间，内存空间，文件，输入输出设备的使用权等
+
+线程与进程相似，但线程是一个比进程更小的执行单位。一个进程在其执行的过程中可以产生多个线程。
+与进程不同的是同类的多个线程共享同一块内存空间和一组系统资源，
+所以系统在产生一个线程，或是在各个线程之间作切换工作时，负担要比进程小得多，
+也正因为如此，线程也被称为轻量级进程
+
+
+### 重点：多线程并发
+
+![详见/docs/java/Thread.md](/docs/java/Thread.md) 
+
+
 
 
 

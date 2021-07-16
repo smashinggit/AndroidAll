@@ -24,6 +24,8 @@
 
 
 
+***
+
 # 二、 基础
 
 在 Kotlin 中，所有东西都是对象，在这个意义上讲我们可以**在任何变量上调用成员函数与属性**
@@ -994,81 +996,62 @@ return@forEach  // 局部返回到该 lambda 表达式的调用者，即 forEach
 
 
 
+------
+
 
 
 # 三、进阶
 
+
+
 ## 3.1 泛型
 
-与 Java 类似，Kotlin 中的类也可以有类型参数：
+
+
+###  概述
+
+Kotlin 的泛型与 Java 一样，都是一种语法糖，即**只在源代码中有泛型定义，到了class级别就被擦除了**。 
+
+泛型（Generics）其实就是把类型参数化，真正的名字叫做类型参数，它的引入给强类型编程语言加入了更强的灵活性 
+
 ```
 class Box<T>(t: T) {
     var value = t
 }
 ```
 
-### 型变
 
-Java 类型系统中最棘手的部分之一是通配符类型,而 Kotlin 中没有。
-相反，它有两个其他的东西：
-声明处型变（declaration-site variance）与类型投影（type projections）
 
-首先，让我们思考为什么 Java 需要那些神秘的通配符.在 《Effective Java》第三版 解释了该问题——第 31 条：
-利用有限制通配符来提升 API 的灵活性。 
+###   泛型中的 OUT 与 IN
 
-**Java 中的泛型是不型变的**，这意味着 List<String> 并不是List<Object> 的子类型, 
-为什么这样？ 如果 List 不是不型变的，它就没比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：
+在Kotlin中 **out代表协变，in代表逆变**，
 
-```
-// Java
-List<String> strs = new ArrayList<String>();
-List<Object> objs = strs; // ！！！此处的编译器错误让我们避免了之后的运行时异常
-objs.add(1); // 这里我们把一个整数放入一个字符串列表
-String s = strs.get(0); // ！！！ ClassCastException：无法将整数转换为字符串
+为了加深理解我们可以将Kotlin的 **协变(out) 看成 Java 的上界通配符，将逆变(in) 看成 Java 的下界通配符**
+
+**out 相当于 java 里面的 <? extend>**
+**in  相当于 java 里面的 <? super>**
 
 ```
-因此，Java 禁止这样的事情以保证运行时的安全。但这样会有一些影响。
-例如，考虑 Collection 接口中的 addAll() 方法。该方法的签名应该是什么？直觉上，我们会这样:
-```
-// Java
-interface Collection<E> …… {
-  void addAll(Collection<E> items);
-}
-```
+//Kotlin使用处协变 
+fun sumOfList(list: List) 
 
-但随后，我们就无法做到以下简单的事情（这是完全安全）：
-```
-// Java
-void copyAll(Collection<Object> to, Collection<String> from) {
-  to.addAll(from);
-  // ！！！对于这种简单声明的 addAll 将不能编译：
-  // Collection<String> 不是 Collection<Object> 的子类型
-}
+//Java上界通配符 
+void sumOfList(List list) 
+
+//Kotlin使用处逆变 
+fun addNumbers(list: List) 
+
+//Java下界通配符 
+void addNumbers(List list)
 ```
 
-这就是为什么 addAll() 的实际签名是以下这样：
-```
-// Java
-interface Collection<E> …… {
-  void addAll(Collection<? extends E> items);
-}
-```
 
-**通配符类型参数 ? extends E 表示此方法接受 E 或者 E 的一些子类型对象的集合，而不只是 E 自身**。
-这意味着我们可以安全地从其中（该集合中的元素是 E 的子类的实例）读取 E，但不能写入， 因为我们不知道什么对
-象符合那个未知的 E 的子类型。 反过来，该限制可以让Collection<String>表示为Collection<? extends Object>
-的子类型。
 
-简而言之，**带 extends 限定（上界）的通配符类型使得类型是协变的（covariant）**。
+![泛型对比](../../pics/kotlin/泛型对比总结.png)
 
-理解为什么这个技巧能够工作的关键相当简单：
-如果只能从集合中获取元素，那么使用 String 的集合， 并且从其中读取 Object 也没问题 。
-反过来，如果只能向集合中 放入 元素，就可以用 Object 集合并向其中放入 String：
-在 Java 中有 List<? super String> 是 List<Object> 的一个超类。
+总的来说，Kotlin 泛型更加简洁安全，但是和 Java 一样都是有类型擦除的，都属于编译时泛型。
 
-后者称为逆变性（contravariance），并且对于 List <? super String> 你只能调用接受 String 作为参数的方法 
-（例如，你可以调用 add(String) 或者 set(int, String)），当然如果调用函数返回 List<T> 中的 T，你得到的并
-非一个 String 而是一个 Object。
+
 
 
 
@@ -1550,6 +1533,124 @@ val result = service.run {
   ````
 
 
-kotlin里面的out,in的简单理解:
-out 相当于java里面的 <? extend>
-in 相当于java里面的 <? super>
+
+
+
+## 3.4  注解
+
+
+
+在Kotlin中注解核心概念和Java一样，并且100%与Java注解兼容
+
+一个注解允许你把额外的元数据关联到一个声明上，然后元数据就可以被某种方式(比如运行时反射方式以及一些源代码工具)访问
+
+
+
+Java中通过 @interface关键字来声明
+
+Kotlin中通过 annotation class 来声明
+
+```
+// Java中的注解通过@interface关键字进行定义，它和接口声明类似，只不过在前面多加@ 
+@interface ApiDoc { String value(); }
+
+
+// Kotlin 和一般的声明很类似，只是在class前面加上了annotation修饰符 
+annotation class ApiDoc(val value: String)
+```
+
+
+
+
+
+### Kotlin中的元注解
+
+
+
+和Java一样在Kotlin中一个Kotlin注解类自己本身也可以被注解，可以给注解类加注解，我们把这种注解称为元注解。
+
+ Kotlin中的元注解类定义于kotlin.annotation包中，主要有： 
+
+- @Target：定义注解能够应用于那些目标对象 
+- @Retention：注解的保留期 
+- @Repeatable：标记的注解可以多次应用于相同的声明或类型 
+- @MustBeDocumented：修饰的注解将被文档工具提取到API文档中
+
+
+
+#### Target
+
+@Target顾名思义就是目标对象，也就是我们定义的注解能够应用于那些目标对象，可以同时指定多个作用的目标对象
+
+
+
+#### Retention
+
+@Retention 我们可以理解为保留期，和Java一样Kotlin有三种时期: 
+
+- 源代码时期(SOURCE)
+- 编译时期(BINARY)
+- 运行时期(RUNTIME)
+
+
+
+### 实例
+
+```
+object Test {
+    @JvmStatic
+    fun main(arg: Array<String>) {
+        val annotations1 = Api::class.java.getDeclaredMethod("getData").annotations
+        val annotations2 = Api::class.java.getDeclaredMethod("login").annotations
+
+        val httpMethod1 = annotations1.find { it is HttpMethod } as? HttpMethod
+        val httpMethod2 = annotations2.find { it is HttpMethod } as? HttpMethod
+
+        println("方法1 的注解值是 ${httpMethod1?.method}")
+        println("方法2 的注解值是 ${httpMethod2?.method}")
+    }
+}
+
+enum class Method {
+    GET,
+    POST
+}
+
+@Retention(AnnotationRetention.RUNTIME)
+@Target(AnnotationTarget.FUNCTION)
+annotation class HttpMethod(val method: Method)
+
+interface Api {
+    @HttpMethod(Method.GET)
+    fun getData()
+
+    @HttpMethod(Method.POST)
+    fun login()
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

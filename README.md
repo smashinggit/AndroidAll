@@ -154,8 +154,8 @@
      - broadcast receiver
 
   - 3.1.2 混淆与签名
-     - [Android 签名](/docs/android/signature.md)
-     - [混淆总结](/docs/android/Proguard.md)
+     - [Android 签名](/docs/android/base/Signature.md)
+     - [混淆总结](/docs/android/base/Proguard.md)
      
   - 3.1.3 版本更新 && 下载 && 安装
      - todo
@@ -167,7 +167,7 @@
      - 
      
   - 3.1.5 Handler
-     - [Handler](/docs/android/Handler.md)
+     - [Handler](/docs/android/base/Handler.md)
      
   - 3.1.6 设备硬件、软件相关信息   
      - [Devices](/common/src/main/java/com/cs/common/utils/Devices.kt)

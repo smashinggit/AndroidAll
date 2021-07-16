@@ -28,7 +28,7 @@ that Looper's thread.
 
 # 源码分析
 
-## Hanlder
+## Handler
 一个 Handler 对象持有：
 mLooper
 mQueue

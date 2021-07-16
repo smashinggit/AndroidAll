@@ -1,3 +1,5 @@
+[toc]
+
 # 混淆
 (文章地址)[https://juejin.cn/post/6966526844552085512#heading-0]
 

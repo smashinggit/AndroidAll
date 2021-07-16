@@ -11,17 +11,30 @@ object Test {
     @JvmStatic
     fun main(arg: Array<String>) {
 
-        kotlin.run {
+        val annotations1 = Api::class.java.getDeclaredMethod("getData").annotations
+        val annotations2 = Api::class.java.getDeclaredMethod("login").annotations
 
+        val httpMethod1 = annotations1.find { it is HttpMethod } as? HttpMethod
+        val httpMethod2 = annotations2.find { it is HttpMethod } as? HttpMethod
 
-        }
-        "hello".also {
-            println(it)
-        }
-
-        with("hello") {
-            println(this)
-        }
+        println("方法1 的注解值是 ${httpMethod1?.method}")
+        println("方法2 的注解值是 ${httpMethod2?.method}")
     }
+}
 
+enum class Method {
+    GET,
+    POST
+}
+
+@Retention(AnnotationRetention.RUNTIME)
+@Target(AnnotationTarget.FUNCTION)
+annotation class HttpMethod(val method: Method)
+
+interface Api {
+    @HttpMethod(Method.GET)
+    fun getData()
+
+    @HttpMethod(Method.POST)
+    fun login()
 }
