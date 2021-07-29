@@ -10,13 +10,17 @@
 - common     公用类库
 - todo       数据结构、算法、设计模式 的相关代码
 - pics       存放相关知识点的图片
-- docs       存放所有的总结性文档(重点)
+- docs       **存放所有的总结性文档(重点)**
 
 
 
 
 
 # 一、计算机基础
+
+[Http](/docs/http/Http.md)
+
+[加解密](/docs/base/Encryption.md)
 
 [详情见Base.md](/docs/Base.md)
 
@@ -175,6 +179,9 @@
 
 
 ## 3.2 进阶
+
+  - [从开机到App启动流程](/docs/android/Launch.md)  
+  
   - 3.2.1 View显示过程   [详见UI.md](/docs/android/ui/Ui.md)
   - 3.2.2 View绘制流程    [详见UI.md](/docs/android/ui/Ui.md)
   - 3.2.3 View触摸事件传递  [详见UI.md](/docs/android/ui/Ui.md)
@@ -210,9 +217,13 @@
     
 ## 3.4 Jetpack 组件
 
-[LifeCycle](/docs/android/jetpack/LifeCycle.md)
-[LiveData](/docs/android/jetpack/LiveData.md)
-[ViewModel](/docs/android/jetpack/ViewModel.md)
+- [LifeCycle](/docs/android/jetpack/LifeCycle.md)
+
+- [LiveData](/docs/android/jetpack/LiveData.md)
+
+- [ViewModel](/docs/android/jetpack/ViewModel.md)
+
+- [Room](/docs/android/jetpack/Room.md)
 
 
 
@@ -222,7 +233,9 @@
 
 # 四、Kotlin 
 
-[Kotlin](/docs/kotlin/Kotlin.md)
+[Kotlin总结](/docs/kotlin/Kotlin.md)
+
+[协程](/docs/kotlin/Coroutine.md)
 
 
 
@@ -266,20 +279,17 @@
 
 # 九、其他
 
-## 网络相关
-
-
-### 弱网模拟
+## 9.1 弱网模拟
 - [Windows平台：Clumsy](/docs/http/windows&android弱网模拟.md)
 - [Android: QNET](/docs/http/windows&android弱网模拟.md)
 
 
-### 抓包
+## 9.2 抓包
 - WireShark
 
 
 
-# 面试题
+# 十、 面试题
 [Java面试题总结](/summary/Interview_Java.md)
 
 [Android面试题总结一](/summary/Interview_android.md)

@@ -5,7 +5,7 @@
 
 
 # Android打包流程
-![打包流程](/pics/android/打包流程.png)
+![打包流程](/pics/android/base/打包流程.png)
 
 
 1. 打包资源文件Resource Files，生成R.java文件（AAPT：Android Asset Packaging Tool）
@@ -138,7 +138,7 @@ v1 到 v2 方案的升级，对开发者影响最大的，就是渠道签署的�
 # V1 和 V2 签名
 
 V1签名是通过META-INF中的三个文件保证签名及信息的完整性：
-![V1](/pics/android/v1.png)
+![V1](/pics/android/base/v1.png)
 
 
 
@@ -147,7 +147,7 @@ V1签名是通过META-INF中的三个文件保证签名及信息的完整性：
 该分块位于zip中央目录部分之前并紧邻该部分。在APK签名分块内，签名和签名者身份信息会存储在APK签名方案v2分块中，
 保证整个APK文件不可修改，
 
-![V2](/pics/android/v2.png)
+![V2](/pics/android/base/v2.png)
 
 
 

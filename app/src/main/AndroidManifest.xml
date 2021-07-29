@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".base.DevicesActivity">
+        <activity android:name=".jetpack.navigation.NavigationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -50,5 +50,9 @@ object Logs {
     fun logForever(msg: String, tag: String = TAG) {
         Log.e("tag", msg)
     }
+}
 
+
+fun Any?.log() {
+    Logs.logd(this.toString())
 }

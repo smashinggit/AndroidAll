@@ -24,6 +24,7 @@ ext {
     lifecycle_process = "2.2.0"
     lifecycle_version = "2.3.1"
 
+    nav_version = "2.3.5"
 
     retrofit = "2.9.0"
     converter_gson = "2.0.2"

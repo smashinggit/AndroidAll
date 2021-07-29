@@ -23,7 +23,7 @@
 ## 1.2 Apk构建流程
 
 
-![Apk构建流程](/pics/android/打包流程.png)
+![Apk构建流程](/pics/android/base/打包流程.png)
 
 - IDE将源代码转成dex，其他内容转换成编译后的资源；
 - APK打包器将dex和编译后的资源整合成单个apk；
