@@ -23,7 +23,7 @@ Kotlin 函数都是头等的，这意味着它们可以
 
 Kotlin 使用类似 (Int) -> String 的一系列**函数类型**来处理**函数的声明**：
 val onClick: () -> Unit = ……。
- 
+
 - 所有函数类型都有一个圆括号括起来的参数类型列表以及一个返回类型：
 (A, B) -> C 表示接受类型分别为 A 与 B 两个参数并返回一个 C 类型值的函数类型。
 参数类型列表可以为空，如 () -> A。Unit 返回类型不可省略
@@ -79,7 +79,7 @@ max(strings, { a, b -> a.length < b.length })
 
 函数 max 是一个高阶函数，它接受一个函数作为第二个参数。
  其第二个参数是一个表达式，它本身是一个函数，即函数字面值，它等价于以下具名函数：
- 
+
 ```
 fun compare(a: String, b: String): Boolean = a.length < b.length
 ```
@@ -137,6 +137,7 @@ finally {
 ```
 这个不是我们从一开始就想要的吗？
 为了让编译器这么做，我们需要使用 inline 修饰符标记 lock() 函数：
+
 ```
 inline fun <T> lock(lock: Lock, body: () -> T): T { …… }
 ```
@@ -147,7 +148,6 @@ inline fun <T> lock(lock: Lock, body: () -> T): T { …… }
 
 
 # 具体化的类型参数
-
 
 
 

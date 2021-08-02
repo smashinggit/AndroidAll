@@ -6,25 +6,21 @@
 目前还在不断完善中
 
 工程目录结构：
-- app        Android默认工程，里面是一些Android相关的代码
+- app        Android 默认工程，里面是一些 Android 相关的测试代码
 - common     公用类库
-- todo       数据结构、算法、设计模式 的相关代码
+- lib_code   **数据结构、算法、设计模式 的相关代码** 以及一些测试代码
 - pics       存放相关知识点的图片
 - docs       **存放所有的总结性文档(重点)**
 
 
 
-
-
 # 一、计算机基础
 
+[存储单位、进制](/docs/base/存储单位、进制.md)
+
+[编码、加解密](/docs/base/编码、加解密.md)
+
 [Http](/docs/http/Http.md)
-
-[加解密](/docs/base/Encryption.md)
-
-[详情见Base.md](/docs/Base.md)
-
-
 
 
 
