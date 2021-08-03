@@ -493,7 +493,9 @@ Content-Range:<start>-<end>/total 响应报⽂中出现，表示发送的是哪�
 
 首先我们要弄清楚一件事：**URL和URN都是URI的子集**
 
-换言之，URL 和 URN 都是URI，但是 URI 不一定是 URL 或者 URN
+URN 作用就好像一个人的名字，URL 就像一个人的地址。
+
+换句话说：**URN 确定了东西的名称，URL 提供了找到它的方式，而 URI 代表资源的唯一标识**
 
 
 
