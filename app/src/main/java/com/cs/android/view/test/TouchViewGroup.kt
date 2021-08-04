@@ -17,17 +17,17 @@ class TouchViewGroup : LinearLayout {
     )
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        log("ViewGroup# dispatchTouchEvent ${ev?.action}")
+        "ViewGroup# dispatchTouchEvent ${ev?.action}".log()
         return super.dispatchTouchEvent(ev)
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        log("ViewGroup# onInterceptTouchEvent ${ev?.action} ")
+        "ViewGroup# onInterceptTouchEvent ${ev?.action} ".log()
         return super.onInterceptTouchEvent(ev)
     }
 
     override fun onTouchEvent(ev: MotionEvent?): Boolean {
-        log("ViewGroup# onTouchEvent ${ev?.action}")
+        "ViewGroup# onTouchEvent ${ev?.action}".log()
         return super.onTouchEvent(ev)
     }
 

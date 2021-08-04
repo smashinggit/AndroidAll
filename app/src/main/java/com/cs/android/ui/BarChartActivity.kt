@@ -27,7 +27,7 @@ class BarChartActivity : BaseActivity() {
 
         for (i in 0 until 30) {
             val random = (0..100).random()
-            log("random $random")
+            "random $random".log()
             list.add(BarChart.BarInfo("${i}号柱子", random))
         }
 

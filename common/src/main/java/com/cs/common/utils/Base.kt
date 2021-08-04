@@ -8,18 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import java.io.Serializable
 
-fun Context.log(msg: String) {
-    Log.e("tag", msg)
-}
-
-fun Fragment.log(msg: String) {
-    Log.e("tag", msg)
-}
-
-fun View.log(msg: String) {
-    Log.e("tag", msg)
-}
-
 fun Context.toast(msg: String) {
     Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }

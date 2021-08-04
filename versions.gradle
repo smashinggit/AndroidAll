@@ -26,10 +26,10 @@ ext {
 
     nav_version = "2.3.5"
 
+    okhttp = "4.9.1"
     retrofit = "2.9.0"
     converter_gson = "2.0.2"
     converter_fastjson = "2.2.0"
-    logging_interceptor = "4.7.2"
 
     glide = "4.11.0"
     leakcanary = "2.4"

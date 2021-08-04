@@ -143,7 +143,7 @@ class FollowFingerBall : View {
         val parentCentX = (parent.left + parent.right) / 2
 
         if (centerX < parentCentX) {  //移动到父view左侧
-            log("left $left")
+            "left $left".log()
             mScroller.startScroll(left, top, -left, 0)
         } else {
             mScroller.startScroll(left, top, parent.width - left - width, 0)
@@ -154,7 +154,7 @@ class FollowFingerBall : View {
 
     override fun computeScroll() {
         if (mScroller.computeScrollOffset()) {
-            log("left $left mScroller.currX ${mScroller.currX}")
+          "left $left mScroller.currX ${mScroller.currX}".log()
 
             left = mScroller.currX
             right = left + measuredWidth

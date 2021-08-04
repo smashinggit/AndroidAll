@@ -60,9 +60,10 @@ dependencies {
 
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary"
 
+    api "com.squareup.okhttp3:okhttp:$okhttp"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp"
     api "com.squareup.retrofit2:retrofit:$retrofit"
     api "com.squareup.retrofit2:converter-gson:$converter_gson"
-    api "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
     api "org.ligboy.retrofit2:converter-fastjson-android:$converter_fastjson"
     api "org.ligboy.retrofit2:converter-fastjson-android:$converter_fastjson"
     api "com.github.bumptech.glide:glide:$glide"

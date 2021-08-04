@@ -1,7 +1,8 @@
-package com.cs.android
+package com.cs.android.http
 
 import android.os.Bundle
 import android.os.Environment
+import com.cs.android.R
 import com.cs.common.base.BaseActivity
 import com.cs.common.http.Api
 import com.cs.common.http.RetrofitClient
@@ -38,11 +39,9 @@ class HttpActivity : BaseActivity() {
 
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                log("IOException $e")
             }
 
             override fun onResponse(call: Call, response: Response) {
-                log("response ${response.body?.string()}")
             }
         })
     }
@@ -68,11 +67,9 @@ class HttpActivity : BaseActivity() {
 
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                log("IOException $e")
             }
 
             override fun onResponse(call: Call, response: Response) {
-                log("response ${response.body?.string()}")
             }
         })
     }
@@ -91,12 +88,6 @@ class HttpActivity : BaseActivity() {
             .addEncoded("key%2", "value%2")
             .build()
 
-        log("${requestBody.name(0)} ${requestBody.value(0)}")
-        log("${requestBody.name(1)} ${requestBody.value(1)}")
-
-        log("${requestBody.encodedName(0)} ${requestBody.encodedValue(0)}")
-        log("${requestBody.encodedName(1)} ${requestBody.encodedValue(1)}")
-
         val request = Request.Builder()
             .post(requestBody)
             .url("https://api.github.com/users/smashing/repos")
@@ -105,11 +96,9 @@ class HttpActivity : BaseActivity() {
 
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                log("IOException $e")
             }
 
             override fun onResponse(call: Call, response: Response) {
-                log("response ${response.body?.string()}")
             }
         })
     }
@@ -146,11 +135,9 @@ class HttpActivity : BaseActivity() {
 
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                log("IOException $e")
             }
 
             override fun onResponse(call: Call, response: Response) {
-                log("response ${response.body?.string()}")
             }
         })
     }
@@ -166,14 +153,12 @@ class HttpActivity : BaseActivity() {
 
         call.enqueue(object : retrofit2.Callback<ResponseBody> {
             override fun onFailure(call: retrofit2.Call<ResponseBody>, t: Throwable) {
-                log("Throwable $t")
             }
 
             override fun onResponse(
                 call: retrofit2.Call<ResponseBody>,
                 response: retrofit2.Response<ResponseBody>
             ) {
-                log("response ${response.body()?.string()}")
             }
         })
     }

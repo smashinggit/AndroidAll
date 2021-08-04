@@ -57,8 +57,8 @@ class MyTextView : View {
         var widthSize = MeasureSpec.getSize(widthMeasureSpec)
         var heightSize = MeasureSpec.getSize(heightMeasureSpec)
 
-        log("父view允许的 widthSize $widthSize")
-        log("父view允许的 heightSize $heightSize")
+        "父view允许的 widthSize $widthSize".log()
+        "父view允许的 heightSize $heightSize".log()
 
         // 如果此 View 在 xml 中设置的是 wrap_content,那么宽度就等于绘制的文本的宽度
         if (widthMode == MeasureSpec.AT_MOST) {
@@ -75,29 +75,29 @@ class MyTextView : View {
         // 打印log
         when (widthMode) {
             MeasureSpec.UNSPECIFIED -> {
-                log("widthMode UNSPECIFIED")
+                "widthMode UNSPECIFIED".log()
             }
             MeasureSpec.AT_MOST -> {
-                log("widthMode AT_MOST")
+                "widthMode AT_MOST".log()
             }
             MeasureSpec.EXACTLY -> {
-                log("widthMode EXACTLY")
+                "widthMode EXACTLY".log()
             }
         }
         when (heightMode) {
             MeasureSpec.UNSPECIFIED -> {
-                log("heightMode UNSPECIFIED")
+                "heightMode UNSPECIFIED".log()
             }
             MeasureSpec.AT_MOST -> {
-                log("heightMode AT_MOST")
+                "heightMode AT_MOST".log()
             }
             MeasureSpec.EXACTLY -> {
-                log("heightMode EXACTLY")
+                "heightMode EXACTLY".log()
             }
         }
 
-        log("widthSize $widthSize")
-        log("heightSize $heightSize")
+        "widthSize $widthSize".log()
+        "heightSize $heightSize".log()
 
         setMeasuredDimension(widthSize, heightSize)
     }

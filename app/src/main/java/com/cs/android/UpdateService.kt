@@ -18,7 +18,7 @@ import java.net.URI
 class UpdateService : IntentService("UpdateService") {
 
     override fun onHandleIntent(intent: Intent?) {
-        log("UpdateService onHandleIntent")
+        "UpdateService onHandleIntent".log()
         showProgress()
         update()
     }
@@ -41,7 +41,7 @@ class UpdateService : IntentService("UpdateService") {
         downloadManager.setStateCallback(object : AndroidDownloadManager.DownloadStateCallback {
             override fun onSuccess(uri: URI) {
                 toast("下载成功")
-                log("下载成功 $uri")
+                "下载成功 $uri".log()
                 Apk.install(this@UpdateService, uri)
             }
 
@@ -53,7 +53,7 @@ class UpdateService : IntentService("UpdateService") {
             }
 
             override fun onProgress(progress: Int) {
-                log("下载进度 $progress")
+                "下载进度 $progress".log()
             }
         })
     }

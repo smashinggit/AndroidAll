@@ -156,7 +156,7 @@ class BarChart : View {
 
                 val currentDotY =
                     (mBarHeight * (1 - (barInfo.value / 100f) * mAnimPercent) + mTopSpacing)
-                log("currentDotY $currentDotY")
+                "currentDotY $currentDotY".log()
 
                 //外圆
                 mPaint.color = mOuterDotColor
@@ -259,7 +259,7 @@ class BarChart : View {
                 val xVelocity = mVelocityTracker?.xVelocity ?: 0f
                 val yVelocity = mVelocityTracker?.yVelocity ?: 0f
 
-                log("xVelocity $xVelocity")
+                "xVelocity $xVelocity".log()
                 // 速度要大于最小的速度值，才开始滑动
                 if (abs(xVelocity) > mMinimumVelocity) {
 
@@ -289,8 +289,8 @@ class BarChart : View {
     override fun computeScroll() {
 
         if (mScroller.computeScrollOffset()) {
-            log("scrollX: $scrollX")
-            log("computeScroll currX:${mScroller.currX}  currY:${mScroller.currY}")
+            "scrollX: $scrollX".log()
+            "computeScroll currX:${mScroller.currX}  currY:${mScroller.currY}".log()
             scrollTo(mScroller.currX, mScroller.currY)
             invalidate()
         }

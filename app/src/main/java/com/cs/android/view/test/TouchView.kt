@@ -19,12 +19,12 @@ class TouchView : View {
 
 
     override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
-        log("View# dispatchTouchEvent ${event?.action}")
+       "View# dispatchTouchEvent ${event?.action}".log()
         return super.dispatchTouchEvent(event)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        log("View# onTouchEvent ${event?.action}")
+       "View# onTouchEvent ${event?.action}".log()
         return super.onTouchEvent(event)
     }
 }

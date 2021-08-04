@@ -11,37 +11,6 @@ import com.cs.common.utils.log
  *
  */
 open class BaseActivity : AppCompatActivity() {
-    val mPermissionHelper = PermissionHelper()
-
-
-    fun checkPermission(
-        permissions: Array<String>,
-        onGranted: (ArrayList<String>) -> Unit = {},
-        onDenied: (ArrayList<String>) -> Unit = {},
-        onPermanentDenied: (ArrayList<String>) -> Unit = {}
-    ) {
-        mPermissionHelper
-            .with(this)
-            .checkPermissions(permissions)
-            .onGranted {
-                onGranted(it)
-                it.forEach {
-                    log("onGranted $it")
-                }
-            }
-            .onDenied {
-                onDenied(it)
-                it.forEach {
-                    log("onDenied $it")
-                }
-            }
-            .onPermanentDenied {
-                onPermanentDenied(it)
-                it.forEach {
-                    log("onPermanentDenied $it")
-                }
-            }
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -49,7 +18,5 @@ open class BaseActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        mPermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
     }
 }

@@ -41,13 +41,13 @@ class LetterIndexViewFragment : BaseFragment() {
         letterIndexView.setOnLetterSelectedListener(object :
             LetterIndexView.OnLetterSelectedListener {
             override fun onSelected(index: Int, letter: String) {
-                log("onSelected  $letter")
+               "onSelected  $letter".log()
 
                 tvLetterTip.text = letter
             }
 
             override fun onTouch(isTouch: Boolean) {
-                log("isTouch $isTouch")
+                "isTouch $isTouch".log()
                 mHandler.removeCallbacksAndMessages(null)
                 if (isTouch) {
                     mHandler.sendEmptyMessage(1)
