@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".http.OkHttpActivity">
+        <activity android:name=".http.RetrofitActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

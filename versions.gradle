@@ -28,10 +28,11 @@ ext {
 
     okhttp = "4.9.1"
     retrofit = "2.9.0"
-    converter_gson = "2.0.2"
+    converter_gson = "2.9.0"
     converter_fastjson = "2.2.0"
+    fastjson = "1.1.72.android"
 
-    glide = "4.11.0"
-    leakcanary = "2.4"
+    glide = "4.12.0"
+    leakcanary = "2.5"
     greendao = "3.3.0"
 }

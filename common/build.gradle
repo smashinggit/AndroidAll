@@ -65,7 +65,8 @@ dependencies {
     api "com.squareup.retrofit2:retrofit:$retrofit"
     api "com.squareup.retrofit2:converter-gson:$converter_gson"
     api "org.ligboy.retrofit2:converter-fastjson-android:$converter_fastjson"
-    api "org.ligboy.retrofit2:converter-fastjson-android:$converter_fastjson"
+    api "com.alibaba:fastjson:$fastjson"
+
     api "com.github.bumptech.glide:glide:$glide"
 
 

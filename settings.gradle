@@ -1,6 +1,5 @@
-include ':lib_code'
 rootProject.name='AndroidAll'
+include ':lib_code'
 include ':test'
-include ':neteasystudy'
 include ':app'
 include ':common'
