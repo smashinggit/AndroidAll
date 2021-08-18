@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="外部存储"
+            android:text="外部私有存储"
             android:textSize="20dp" />
 
         <TextView
@@ -49,6 +49,21 @@
             android:layout_height="wrap_content"
             android:text=""
             android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="外部共享存储"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvExternalPublicInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="16dp" />
+
 
     </LinearLayout>
 </ScrollView>

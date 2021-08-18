@@ -272,12 +272,13 @@ Glide
 
 # 六、数据结构
 [详见数据结构](/summary/DataStructure.md)
-- 数组（Array）
-- 队列（Queue）
-- 链表（Linked List）
-- 栈（Stack）
-- 树（Tree）
-- 散列表（Hash）
+- [数组(Array)](/docs/advanced/datastructure/数组(Array).md)
+- [ 队列(Queue)](/docs/advanced/datastructure/队列(Queue).md)
+- [链表(LinkedList)](/docs/advanced/datastructure/链表(LinkedList).md)
+- [跳表(SkipList)](/docs/advanced/datastructure/跳表(SkipList).md)
+- [栈(Stack)](/docs/advanced/datastructure/栈(Stack).md)
+- [散列表(HashTable)](/docs/advanced/datastructure/散列表(HashTable).md)
+- [树(Tree)](/docs/advanced/datastructure/树(Tree).md)
 - 堆（Heap）
 - 图（Graph）
 
@@ -285,6 +286,16 @@ Glide
 # 七、算法
 [算法](summary/Algorithm.md)
 
+
+- [复杂度分析](/docs/advanced/algorithm/复杂度分析.md)
+- [递归算法(Recursion)](/docs/advanced/algorithm/递归(Recursion).md)
+- [二分查找算法(BinarySearch)](/docs/advanced/algorithm/二分查找算法(BinarySearch).md)
+- [冒泡排序(BubbleSort)](/docs/advanced/algorithm/冒泡排序(BubbleSort).md)
+- [插入排序(InsertSort)](/docs/advanced/algorithm/插入排序(InsertionSort).md)
+- [选择排序(SelectionSort)](/docs/advanced/algorithm/选择排序(SelectionSort).md)
+- [归并排序(MergeSort)](/docs/advanced/algorithm/归并排序(MergeSort).md)
+- [快速排序(QuickSort)](/docs/advanced/algorithm/快速排序(QuickSort).md)
+- [桶(BucketSort)](/docs/advanced/algorithm/桶排序(BucketSort).md)
 
 
 # 八、Git

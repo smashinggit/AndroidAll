@@ -6,6 +6,16 @@ import java.util.Arrays;
  * @author ChenSen
  * @date 2021/8/13 21:46
  * @desc 快速排序
+ * <p>
+ * 时间复杂度：
+ * 最好 -> O(nlogn)
+ * 最坏 -> O(n2)
+ * 平均 -> O(nlogn)
+ * <p>
+ * 空间复杂度 -> O(1)
+ * 原地排序算法
+ * <p>
+ * 不是稳定性算法
  */
 public class QuickSort {
     private static final int[] data = {2, 5, 4, 1, 6, 3};

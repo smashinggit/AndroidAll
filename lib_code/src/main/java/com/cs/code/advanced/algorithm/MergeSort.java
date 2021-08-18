@@ -6,6 +6,16 @@ import java.util.Arrays;
  * @author ChenSen
  * @date 2021/8/12 17:57
  * @desc 归并排序
+ * <p>
+ * 时间复杂度：
+ * 最好 -> O(nlogn)
+ * 最坏 -> O(nlogn)
+ * 平均 -> O(nlogn)
+ * <p>
+ * 空间复杂度 -> O(n)
+ * 不是原地排序算法
+ * <p>
+ * 稳定性算法
  */
 public class MergeSort {
 
@@ -59,7 +69,6 @@ public class MergeSort {
         int j = mid + 1;     // j代表右边数组的索引
         int k = 0;           // k代表临时数组的索引
 
-
         for (; k < temp.length; k++) {
             if (i > mid) {                      //说明左边数组已经全部拷贝
                 temp[k] = data[j];
@@ -76,6 +85,7 @@ public class MergeSort {
             }
         }
 
+        //将temp中排序好的数据赋值到原数组中
         for (int m = 0; m < temp.length; m++) {
             data[left + m] = temp[m];
         }

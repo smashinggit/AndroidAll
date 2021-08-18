@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 表示应用程序内部存储区中的文件/子目录中的文件 物理路径相当于Context.getFilesDir() + /Download/ -->
-<!--    <files-path-->
-<!--        name="files-path"-->
-<!--        path="Download" />-->
+    <files-path
+        name="files-path"
+        path="Download" />
 
     <!-- 表示应用程序内部存储区缓存子目录中的文件 物理路径相当于 Context.getCacheDir() + /Download/-->
-<!--    <cache-path-->
-<!--        name="cache-path"-->
-<!--        path="Download" />-->
+    <cache-path
+        name="cache-path"
+        path="Download" />
 
     <!-- 表示应用程序外部存储区根目录中的文件 物理路径相当于**Context.getExternalFilesDir(String) **+ /Download/ -->
     <external-files-path
@@ -16,9 +16,9 @@
         path="Download" />
 
     <!-- 表示应用程序外部缓存区根目录中的文件 物理路径相当于 Context.getExternalCacheDir() + /Download/  -->
-<!--    <external-cache-path-->
-<!--        name="external-cache-path"-->
-<!--        path="Download" />-->
+    <external-cache-path
+        name="external-cache-path"
+        path="Download" />
 
 
     <!-- 表示外部存储区根目录中的文件 物理路径相当于Environment.getExternalStorageDirectory() + /Download/ -->
