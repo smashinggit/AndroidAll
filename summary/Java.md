@@ -150,6 +150,82 @@ String 中的 equals 方法是被重写过的，
 - 浅拷贝：对基本数据类型进行值传递，对引用数据类型进行**引用传递**般的拷贝，此为浅拷贝。
 - 深拷贝：对基本数据类型进行值传递，对引用数据类型，**创建一个新的对象，并复制其内容**，此为深拷贝。
 
+### 1.6.1 **⼏种浅拷⻉**
+
+1、遍历循环复制
+
+```
+List<Person> destList=new ArrayList<Person>(srcList.size()); 
+for(Person p : srcList){ 
+ destList.add(p); 
+}
+```
+
+2、使⽤List实现类的构造⽅法
+
+```
+List<Person> destList=new ArrayList<Person>(srcList);
+```
+
+3、使⽤list.addAll()⽅法
+
+```
+List<Person> destList=new ArrayList<Person>(); 
+destList.addAll(srcList);
+```
+
+4、使⽤System.arraycopy()⽅法
+
+```
+Person[] srcPersons=srcList.toArray(new Person[0]); 
+Person[] destPersons=new Person[srcPersons.length]; 
+System.arraycopy(srcPersons, 0, destPersons, 0, srcPersons.length);
+```
+
+
+
+### 1.6.2  几种深拷贝
+
+1.使⽤序列化⽅法
+
+```
+public static <T> List<T> deepCopy(List<T> src) throws IOException,ClassNotFoundException { 
+ ByteArrayOutputStream byteOut = new ByteArrayOutputStream(); 
+ ObjectOutputStream out = new ObjectOutputStream(byteOut); 
+ out.writeObject(src); 
+ ByteArrayInputStream byteIn = new ByteArrayInputStream(byteOut.toByteArray()); 
+ ObjectInputStream in = new ObjectInputStream(byteIn); 
+ @SuppressWarnings("unchecked") 
+ List<T> dest = (List<T>) in.readObject(); 
+ return dest; 
+} 
+List<Person> destList=deepCopy(srcList); //调⽤该⽅法
+```
+
+2.clone⽅法
+
+```
+public class A implements Cloneable { 
+ public String name[]; 
+ public A(){ 
+   name=new String[2]; 
+ } 
+ 
+ public Object clone() { 
+   A o = null; 
+   try { 
+      o = (A) super.clone(); 
+   } catch (CloneNotSupportedException e) { 
+      e.printStackTrace(); 
+   } 
+       return o; 
+  } 
+} 
+for(int i=0;i<n;i+=){
+   copy.add((A)src.get(i).clone());
+}
+```
+
 
 
 
@@ -376,6 +452,12 @@ System.out.println(list)
 **Java 的泛型是伪泛型，这是因为 Java 在编译期间，所有的泛型信息都会被擦掉，这也就是通常所说类型擦除 **
 
 Java中的泛型，只在编译阶段有效。在编译过程中，正确检验泛型结果后，会将泛型的相关信息擦除，并且在对象进入和离开方法的边界处添加类型检查和类型转换的方法。也就是说，泛型信息不会进入到运行时阶段
+
+
+
+**泛型是计算机程序中⼀种᯿要的思维⽅式，它将数据结构和算法与数据类型相分离，使得同⼀套数据结构和算法，能够应⽤于各种数据类型，⽽且还可以保证类型安全，提⾼可读性**。在Java中，泛型⼴泛应⽤于各种容器类中，理解泛型是深刻理解容器的基础
+
+
 
 ### 2.1.2  泛型通配符
 

@@ -50,10 +50,11 @@
    业务组件可上可下，灵活多变；而基础组件，为新业务随时集成提供了基础，减少重复开发和维护工作量   
    
    
+
 ![组件化架构](/pics/android/modularization/组件化架构.png) 
-   
+
 1. 组件依赖关系是上层依赖下层，修改频率是上层高于下层。
-    
+   
 2. 基础组件是通用基础能力，修改频率极低，作为SDK可共公司所有项目集成使用。
 
 3. common组件，作为支撑业务组件、业务基础组件的基础（BaseActivity/BaseFragment等基础能力），
@@ -463,7 +464,7 @@ public class HomeActivity extends AppCompatActivity {
 这俩组件还是耦合了啊，那咋办啊？
 答案是组件拆分出可暴露服务。见下图：
 
-![组件暴露接口](/pics/android/modularization/组件暴露接口.png)
+![组件暴露接口](../pics/android/modularization/组件暴露接口.png)
 
 左侧是组件间可以调用对方服务 但是有依赖耦合。
 右侧，发现多了export_home、export_cart，这是对应拆分出来的专门用于提供服务的暴露组件。
@@ -817,6 +818,7 @@ public class CartApplication implements IApplicationLifecycleCallbacks {
 
 3. 壳工程引入AppLifecycle插件、触发回调
    
+
 壳工程引入新的common组件、业务组件，以及 引入AppLifecycle插件：
 
 ```
@@ -877,75 +879,74 @@ buildscript {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 
 
+​     
 
+​    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-   
-
-
-     
-
-    
- 
-   
    
 
 

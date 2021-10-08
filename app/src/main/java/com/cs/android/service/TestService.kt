@@ -34,14 +34,11 @@ class TestService : Service() {
 
     inner class MyBinder : Binder() {
 
-
         fun startWork() {
             //这里可以对Service进行操作
         }
 
         fun stopWork() {
-
         }
-
     }
 }

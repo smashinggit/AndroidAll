@@ -1,16 +1,31 @@
 [toc]
 
-
 [OkHttp]("https://github.com/square/okhttp")
+
+
+
+# Okhttp
+
+
+
+
+
+
+
+
 
 
 
 # 一、概述
 
 
+
+
+
+
+
+
 ![](../../../pics/android/third/OkHttp各个职责.jpg)
-
-
 
 
 
@@ -29,6 +44,46 @@
 
 
 # 二、重要的类和方法
+
+
+
+## Content-Type
+
+格式：
+
+> Content-Type：type/subtype ;parameter
+
+
+
+-  type：主类型，任意的字符串，如text，如果是*号代表所有；
+-  subtype：子类型，任意的字符串，如html，如果是*号代表所有，用“/”与主类型隔开
+- parameter：可选参数，如charset，boundary等
+
+
+
+常见媒体格式如下：
+
+|                  |              |      |
+| :--------------: | :----------: | :--: |
+|    text/html     |   HTML格式   |      |
+|    **text/plain**    |  **纯文本格式**  |      |
+|     text/xml     |   XML格式    |      |
+|    image/gif     | gif图片格式  |      |
+|  **image/jpeg**  | jpg图片格式  |      |
+|    image/png     | png图片格式  |      |
+| application/xml  | XML数据格式  |      |
+| **application/json** | **JSON数据格式** |      |
+| application/pdf  |   pdf格式    |      |
+| application/msword | Word文档格式 |      |
+| application/octet-stream | 二进制流数据（如常见的文件下载） |      |
+| **application/x-www-form-urlencoded** | **form表单数据被编码为key/value格式发送到服务器（表单默认的提交数据的格式）** |      |
+| **multipart/form-data** | **需要在表单中进行文件上传时，就需要使用该格式** |      |
+|   |      |      |
+
+
+
+
+
 
 ## OkhttpClient
 
@@ -94,6 +149,147 @@ OkHttpClient 中的配置主要有：
 ## RequestBody
 
 一个抽象类，代表一次 Http 请求的请求体
+
+默认情况下，它支持 String，Byte[]，File 类型作为请求体
+
+```
+        val textBody = "text".toRequestBody("text/plain".toMediaType())
+
+        val byteArray = ByteArray(1024)
+        byteArray.toRequestBody("image/jpeg".toMediaType())
+
+        val file = File("")
+        file.asRequestBody("image/jpeg".toMediaType())
+```
+
+
+
+除了上面的几种类型的请求体，它还支持 Form 表单和 MutiPart ：
+
+
+
+###  Form 表单提交
+
+```
+    val formBody = FormBody.Builder()
+            .add("name", "zhangsan")
+            .add("age", "18")
+            .add("address", "河南省%")    // 此处为了对比 add 和 addEncoded 的区别
+            .addEncoded("address2", "河南省%")
+            .build()
+```
+
+报文如下：
+
+```
+--> POST https://api.github.com/users/smashinggit/repos
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 56
+name=zhangsan&age=18&address=%E6%B2%B3%E5%8D%97%E7%9C%81%25&address2=%E6%B2%B3%E5%8D%97%E7%9C%81%
+--> END POST (56-byte body)
+```
+
+
+
+>  **add :  会将字符串中的 "%" 转换成 "%25"**
+
+
+
+
+
+使用 add 和 addEncoded 方法后，会调用  String.canonicalize()方法，它会根据以下规则对传递的字符串进行转换：
+
+- 跳过制表符、换行符、换页符和回车符
+- 在查询中，“ ”被编码为“+”，“+”被编码为“%2B”
+- `encodeSet` 中的字符采用 percent-encoded （百分比编码）
+- 控制字符和非 ASCII 字符采用 percent-encoded （百分比编码）
+
+
+
+百分号编码（Percent-Encoding）也被称为 URL 编码，是一种编码机制。该机制主要应用于 URI 编码中，URI 包含 URL 和 URN，所以它们也同样适用。除此之外，也用于 MIME 类型为"application/x-www-form-urlencoded"的内容
+
+百分号编码会对 URI 中不允许出现的字符或者其他特殊情况的允许的字符进行编码，对于被编码的字符，最终会转为以百分号"%“开头，后面跟着两位16进制数值的形式。
+举个例子，空格符（SP）是不允许的字符，在 ASCII 码对应的二进制值是"00100000”，最终转为"%20
+
+由于 W3C HTML Form 规范中，当 MIME 类型为“application/x-www-form-urlencoded”时，这里的表单的名（name）和值中的空格会被编码为"+"，而不是"%20"。因此对于 application/x-www-form-urlencoded 类型的内容进行百分比编码时，**需把空格替换为"+"**。
+
+
+add 和 addEncoded 的区别，在上面的转换过程中，
+
+- add :  会将字符串中的 "%" 转换成 "%25"
+
+- addEncoded : 不会
+
+
+
+### MultiPart
+
+
+
+```
+  val byteArray = context.assets.open("pic_small.jpg").readBytes()
+
+        val picBody = object : RequestBody() {
+            override fun contentType(): MediaType {
+                return MEDIA_TYPE_JPG
+            }
+            override fun writeTo(sink: BufferedSink) {
+                sink.write(byteArray)
+            }
+            override fun contentLength(): Long {
+                return byteArray.size.toLong()
+            }
+        }
+
+        val multipartBody = MultipartBody.Builder()
+            .addFormDataPart("name", "tom")
+            .addFormDataPart("avatar", "avatar.jpg", picBody)
+            .addPart("param".toRequestBody("text/plain".toMediaType()))
+            .addPart(MultipartBody.Part.create("param2".toRequestBody("text/plain".toMediaType())))
+            .build()
+
+
+        val request = Request.Builder()
+            .url("https://api.github.com/markdown/raw")
+            .post(multipartBody)
+            .build()
+```
+
+
+
+报文：
+
+```
+--> POST https://api.github.com/markdown/raw
+Content-Type: multipart/mixed; boundary=0e53a4d7-a142-4f26-ae48-82423b973675
+Content-Length: 24482
+--0e53a4d7-a142-4f26-ae48-82423b973675
+Content-Disposition: form-data; name="name"
+Content-Length: 3
+tom
+--0e53a4d7-a142-4f26-ae48-82423b973675
+Content-Disposition: form-data; name="avatar"; filename="avatar.jpg"
+Content-Type: image/jpeg
+Content-Length: 23947
+������JFIF����`��`��������C�	
+...
+...
+!e���+�.Z��
+--0e53a4d7-a142-4f26-ae48-82423b973675
+Content-Type: text/plain; charset=utf-8
+Content-Length: 5
+param
+--0e53a4d7-a142-4f26-ae48-82423b973675
+Content-Type: text/plain; charset=utf-8
+Content-Length: 6
+param2
+--0e53a4d7-a142-4f26-ae48-82423b973675--
+--> END POST (24482-byte body)
+```
+
+
+
+
 
 
 

@@ -205,7 +205,6 @@
        - GreenDao 
        - Room
        
-
    - 按下Home键 && 生命周期
       [todo] (todo)
       
@@ -219,9 +218,9 @@
        - 内存优化
        - 电量优化
        - APK瘦身
-    
-    
-    
+
+
+​    
 ## 3.4 Jetpack 组件
 
 - [LifeCycle](/docs/android/jetpack/LifeCycle.md)
@@ -312,17 +311,23 @@ Glide
 
 
 ## 9.2 抓包
+
 - WireShark
 
+- Charles
 
 
-# 十、 面试题
+# MQTT
+
+- [MQTT](/docs/mqtt/MQTT.md)
+
+
+# 面试题
 [Java面试题总结](/summary/Interview_Java.md)
 
-[Android面试题总结一](/summary/Interview_android.md)
+[Android面试题总结一](/summary/面试总结(Android)1.md)
 
 [Android面试题总结二](/summary/Interview_android2.md)
-
 
 
 

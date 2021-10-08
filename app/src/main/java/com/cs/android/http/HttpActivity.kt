@@ -2,11 +2,11 @@ package com.cs.android.http
 
 import android.os.Bundle
 import android.os.Environment
-import com.cs.android.R
+import android.view.LayoutInflater
+import com.cs.android.databinding.ActivityHttpBinding
 import com.cs.common.base.BaseActivity
 import com.cs.common.http.Api
 import com.cs.common.http.RetrofitClient
-import com.cs.common.utils.log
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.File
@@ -14,19 +14,24 @@ import java.io.IOException
 
 class HttpActivity : BaseActivity() {
 
+    private lateinit var mBinding: ActivityHttpBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_http)
+        mBinding = ActivityHttpBinding.inflate(LayoutInflater.from(this))
+        setContentView(mBinding.root)
 
-//        get()
+        mBinding.btnRequest.setOnClickListener {
+                    get()
 //        post()
 //        formPost()
 //        multiPost()
 //        retrofitPost()
 //        retrofitFormPost()
 //        retrofitMultiPost()
-        retrofitMultiPost2()
+//            retrofitMultiPost2()
+        }
     }
 
     private fun get() {
@@ -238,6 +243,7 @@ class HttpActivity : BaseActivity() {
                 call: retrofit2.Call<ResponseBody>,
                 response: retrofit2.Response<ResponseBody>
             ) {
+                mBinding.tvResult.text = "${response.body()?.string()}"
             }
 
         })

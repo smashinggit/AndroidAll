@@ -30,6 +30,11 @@ buildscript {
         maven {
             url "$rootDir/node_modules/react-native/android"
         }
+
+        // Paho Android Service
+        maven {
+            url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
+        }
     }
 
     dependencies {
