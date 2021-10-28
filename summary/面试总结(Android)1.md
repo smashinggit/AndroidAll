@@ -448,15 +448,15 @@ IntentService 是 Service 的子类，默认开启了一个工作线程HandlerTh
 
 
 
-BroadcastReceiver是针对应用间、应用与系统间、应用内部进行通信的一种方式
+BroadcastReceiver 是针对应用间、应用与系统间、应用内部进行通信的一种方式
 
-LocalBroadcastReceiver仅在自己的应用内发送接收广播，也就是只有自己的应用能收到，数据更加安全广播只在这个程序里，而且效率更高。
+LocalBroadcastReceiver 仅在自己的应用内发送接收广播，也就是只有自己的应用能收到，数据更加安全广播只在这个程序里，而且效率更高。
 
 
 
-BroadcastReceiver采用的binder方式实现跨进程间的通信；
+BroadcastReceiver 采用的 binder 方式实现跨进程间的通信；
 
-LocalBroadcastManager使用Handler通信机制。
+LocalBroadcastManager 使用 Handler 通信机制。
 
 
 
@@ -533,7 +533,9 @@ ContentProvider（内容提供者）通过 uri 来标识其它应用要访问的
 
 从四个方面看Handler、Message、MessageQueue 和 Looper 
 
-- Handler: 负责消息的发送和处理 Message:消息对象，类似于链表的一个结点; 
+- Handler: 负责消息的发送和处理
+
+- Message:消息对象，类似于链表的一个结点; 
 
 - MessageQueue: 消息队列，用于存放消息对象的数据结构; 
 
@@ -732,7 +734,7 @@ performTraversals会依次调用performMeasure，performLayout，performDraw三�
 MeasureSpec 是由父View的MeasureSpec和子View的LayoutParams通过简单的计算得出一个针对子View的测量要求，
 这个测量要求就是MeasureSpec
 
-首先，MeasureSpec是 一个大小跟模式的组合值, MeasureSpec中 的值是一个整型（32位）将size和mode打包成一个Int型，
+首先，MeasureSpec 是 一个大小跟模式的组合值, MeasureSpec中 的值是一个整型（32位）将size和mode打包成一个Int型，
 其中高两位是mode，后面30位存的是size
 
 ```
@@ -1827,7 +1829,7 @@ Entry是 DiskLruCache 内 LinkedHashMap Value 的基本结构
 
 原因：
 
-- 垃圾回收器不会回收GC Roots以及那些被它们间接引用的对象
+- 垃圾回收器不会回收 GC Roots 以及那些被它们间接引用的对象
 
 - 非静态内部类会持有外部类的引用
 
@@ -1859,7 +1861,7 @@ Thread 会长久地持有 Activity 的引用，使得系统无法回收 Activity
 
 解决方案: 
 
-1. 将Handler的子类设置成 静态内部类,使用WeakReference弱引用持有Activity实例
+1. 将 Handler 的子类设置成 静态内部类,使用 WeakReference 弱引用持有 Activity 实例
 
 2. 当外部类结束生命周期时，清空Handler内消息队列
 
@@ -1925,7 +1927,7 @@ Thread 会长久地持有 Activity 的引用，使得系统无法回收 Activity
 
 - LeakCanary
 
-  与ReferenceQueque关联。这时再从ReferenceQueque中查看是否有没有该对象，如果没有，执行gc，再次查
+  与 ReferenceQueque 关联。这时再从ReferenceQueque中查看是否有没有该对象，如果没有，执行gc，再次查
 
   看，还是没有的话则判断发生内存泄露了。最后用HAHA这个开源库去分析dump之后的heap内存
 
@@ -2092,9 +2094,9 @@ Activity 的生命周期回调的阻塞并不在触发 ANR 的场景里面，所
 
 
 
-ActivityManagerService 主要负责系统中四大组件的启动、切换、调度及应用进程的管理和调度等工作，其职责与操作系统中的进程管理和调度模块类似。
+ActivityManagerService 主要负责系统中四大组件的启动、切换、调度及应用进程的管理和调度等工作，其职责与操作系统中的进程管理和调度模块类似
 
-ActivityManagerService 进行初始化的时机很明确，就是在SystemServer 进程开启的时候，就会初始化 ActivityManagerService。（系统启动流程）
+ActivityManagerService 进行初始化的时机很明确，就是在 SystemServer 进程开启的时候，就会初始化 ActivityManagerService。（系统启动流程）
 
 如果打开一个 App 的话，需要 AMS 去通知 zygote 进程， 所有的 Activity 的生命周期 AMS 来控制
 
