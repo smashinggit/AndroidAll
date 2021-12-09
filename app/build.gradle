@@ -111,6 +111,10 @@ dependencies {
     implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
     implementation 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
 
+    // ZXing
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
+
+
     testImplementation 'junit:junit:4.13.2'
 
 }

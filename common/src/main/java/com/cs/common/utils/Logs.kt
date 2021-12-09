@@ -31,24 +31,24 @@ object Logs {
 
     fun logi(msg: String, tag: String = TAG) {
         if (OPEN) {
-            Log.i("tag", msg)
+            Log.i(tag, msg)
         }
     }
 
     fun logw(msg: String, tag: String = TAG) {
         if (OPEN) {
-            Log.w("tag", msg)
+            Log.w(tag, msg)
         }
     }
 
     fun loge(msg: String, tag: String = TAG) {
         if (OPEN) {
-            Log.e("tag", msg)
+            Log.e(tag, msg)
         }
     }
 
     fun logForever(msg: String, tag: String = TAG) {
-        Log.e("tag", msg)
+        Log.e(tag, msg)
     }
 }
 

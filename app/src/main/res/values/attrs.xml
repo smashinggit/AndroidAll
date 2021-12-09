@@ -45,4 +45,13 @@
         <attr name="menuRightMargin" format="dimension" />
     </declare-styleable>
 
+
+    <!--自定义二维码扫描页面-->
+    <declare-styleable name="CustomViewfinderView">
+        <attr name="lineColor" format="color" /><!--扫描线的颜色-->
+        <attr name="cornerColor" format="color" /><!--四边角的颜色-->
+        <attr name="scanFrameWidth" format="dimension" /><!--扫描框的宽度-->
+        <attr name="scanFrameHeight" format="dimension" /><!--扫描框的高度-->
+    </declare-styleable>
+
 </resources>

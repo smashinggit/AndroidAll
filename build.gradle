@@ -31,14 +31,14 @@ buildscript {
             url "$rootDir/node_modules/react-native/android"
         }
 
-        // Paho Android Service
+        // Paho Android Service    MQTT使用
         maven {
             url "https://repo.eclipse.org/content/repositories/paho-snapshots/"
         }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath "com.android.tools.build:gradle:7.0.3"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.greenrobot:greendao-gradle-plugin:$greendao"
 
@@ -65,10 +65,6 @@ allprojects {
         maven { url "https://jitpack.io" }
         maven {
             url "$rootDir/node_modules/react-native/android"
-        }
-        maven {
-            url 'http://www.idescout.com/maven/repo/'
-            name 'IDEScout, Inc.'
         }
     }
 }
