@@ -2,4 +2,14 @@
     <string name="app_name">Android</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="filemanagement_refuse">拒绝</string>
+    <string name="filemanagement_accept">接受</string>
+    <string name="filemanagement_confirm">确定</string>
+    <string name="filemanagement_wait_confirm">正在等待对方确认！</string>
+    <string name="filemanagement_translating">正在发送文件，已经完成%1$d%%</string>
+    <string name="filemanagement_select_file">请选择想要传输的文件</string>
+    <string name="filemanagement_not_support_tip1">当前设备不支持外接存储设备的传输</string>
+    <string name="filemanagement_not_support_tip2">请导入本地后再次尝试</string>
+    <string name="filemanagement_open_bluetooth">若要使用蓝牙服务，请先开启蓝牙，是否立即开启</string>
 </resources>

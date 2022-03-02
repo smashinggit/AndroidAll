@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="1420dp"
+    android:layout_height="830dp"
+    android:background="@color/public_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/font_color_white"
+        android:textSize="40dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="标题" />
+
+    <TextView
+        android:id="@+id/tvReceiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:textColor="@color/font_color_white"
+        android:textSize="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="收件人：吴彦祖" />
+
+    <TextView
+        android:id="@+id/tvFileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/font_color_white"
+        android:textSize="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvReceiver"
+        tools:text="文件：哥斯拉大战金刚.mp4" />
+
+    <TextView
+        android:id="@+id/tvFileType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/font_color_white"
+        android:textSize="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFileName"
+        tools:text="收件人：吴彦祖" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/font_color_white"
+        android:textSize="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvFileType"
+        tools:text="正在等待对方确认！" />
+
+    <ProgressBar
+        android:id="@+id/pbProgress"
+        android:layout_width="520dp"
+        android:layout_marginTop="40dp"
+        android:max="100"
+        android:progressDrawable="@drawable/filemanagement_progress_bar"
+        android:layout_height="15dp"
+        tools:progress="50"
+        style="?android:attr/progressBarStyleHorizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMessage" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="380dp"
+        android:layout_height="78dp"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/filemanagement_public_button"
+        android:text="取消"
+        android:textColor="@color/font_color_white"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/btnConfirm" />
+
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="380dp"
+        android:layout_height="78dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginBottom="180dp"
+        android:background="@drawable/filemanagement_public_button"
+        android:text="确定"
+        android:textColor="@color/font_color_white"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/btnCancel"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

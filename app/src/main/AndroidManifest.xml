@@ -4,6 +4,7 @@
     package="com.cs.android">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,6 +15,16 @@
     <uses-permission android:name="android.permission.usb.accessory" />
     <uses-permission android:name="android.hardware.usb.accessory" />
     <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+    <!--蓝牙权限-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.LOCAL_MAC_ADDRESS" />
+    <!-- If your app targets Android 9 or lower, you can declare ACCESS_COARSE_LOCATION instead. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!--蓝牙权限-->
+
 
     <!-- USB Host模式-->
     <uses-feature
@@ -25,15 +36,20 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".qrcode.QRCodeActivity">
-            <!--            <intent-filter>-->
-            <!--                <action android:name="android.intent.action.MAIN" />-->
-            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-            <!--            </intent-filter>-->
+
+
+        <activity
+            android:name=".ui.SeekBarActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <!-- 自定义二维码扫描页面 -->
@@ -53,37 +69,64 @@
             android:name=".nfc.NfcActivity"
             android:launchMode="singleTop">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
-<!--            <category android:name="android.intent.category.DEFAULT" />-->
-<!--                <data android:mimeType="text/plain" />-->
-<!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
+            <!--            <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <data android:mimeType="text/plain" />-->
+            <!--            </intent-filter>-->
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.nfc.action.TECH_DISCOVERED" />-->
-<!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.nfc.action.TECH_DISCOVERED" />-->
+            <!--            </intent-filter>-->
 
-<!--            <meta-data-->
-<!--                android:name="android.nfc.action.TECH_DISCOVERED"-->
-<!--                android:resource="@xml/nfc_tech_filter" />-->
+            <!--            <meta-data-->
+            <!--                android:name="android.nfc.action.TECH_DISCOVERED"-->
+            <!--                android:resource="@xml/nfc_tech_filter" />-->
 
-<!--            <intent-filter>-->
-<!--                <action android:name="android.nfc.action.TAG_DISCOVERED" />-->
-<!--                <category android:name="android.intent.category.DEFAULT" />-->
-<!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.nfc.action.TAG_DISCOVERED" />-->
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--            </intent-filter>-->
         </activity>
+
+
+        <!--蓝牙-->
+        <activity
+            android:name=".bluetooth.BlueToothServerActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".bluetooth.BlueToothClientActivity"
+            android:launchMode="singleTask" />
+
+        <service android:name=".bluetooth.service.BlueToothServerService" />
+        <service android:name=".bluetooth.service.BlueToothClientService" />
 
 
         <service android:name="com.cs.android.UpdateService" />
 
-        <service android:name=".mqtt.MQTTService" />
         <!-- Mqtt Service -->
+        <service android:name=".mqtt.MQTTService" />
         <service android:name="org.eclipse.paho.android.service.MqttService" />
+
+        <!-- U盘 -->
+        <!--        <receiver android:name=".udisk.UDiskActivity$UDiskReceiver">-->
+        <!--            <intent-filter>-->
+        <!--                &lt;!&ndash;U盘相关操作&ndash;&gt;-->
+        <!--                &lt;!&ndash; 插入&ndash;&gt;-->
+        <!--                <action android:name="android.intent.action.MEDIA_MOUNTED" />-->
+        <!--                &lt;!&ndash;拔出&ndash;&gt;-->
+        <!--                <action android:name="android.intent.action.MEDIA_UNMOUNTED" />-->
+        <!--                &lt;!&ndash;完全移除&ndash;&gt;-->
+        <!--                <action android:name="android.intent.action.MEDIA_REMOVED" />-->
+        <!--                &lt;!&ndash;一定要加上，不然监听不到&ndash;&gt;-->
+        <!--                <data android:scheme="file" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
 
         <provider
             android:name="androidx.core.content.FileProvider"

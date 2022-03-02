@@ -1,0 +1,29 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--设置ProgressBar背景色-->
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="15dp" />
+            <solid android:color="@color/scroll_bar_bg" />
+        </shape>
+    </item>
+
+    <item android:id="@android:id/secondaryProgress">
+        <clip>
+            <shape>
+                <corners android:radius="15dp" />
+                <solid android:color="@color/scroll_bar_front" />
+            </shape>
+        </clip>
+    </item>
+
+    <!--设置ProgressBar进度条颜色-->
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="15dp" />
+                <solid android:color="@color/scroll_bar_front" />
+            </shape>
+        </clip>
+    </item>
+</layer-list>

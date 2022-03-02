@@ -7,12 +7,19 @@ import com.cs.android.greendao.DaoSession
 import com.cs.common.utils.SharedPreferencesUtils
 
 class App : Application() {
+
     companion object {
+        private lateinit var INSTANCE: Application;
         var mSession: DaoSession? = null
+
+        fun getInstance(): Application {
+            return INSTANCE;
+        }
     }
 
     override fun onCreate() {
         super.onCreate()
+        INSTANCE = this
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(ProcessLifecycleObserver())
 

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/public_bg"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/filemanagement_public_button"
+        android:text="返回"
+        android:textColor="@color/font_color_white"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toTopOf="@id/dividerLine1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnBluetoothShare"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="40dp"
+        android:layout_toRightOf="@id/btnBack"
+        android:background="@drawable/filemanagement_public_button"
+        android:text="蓝牙共享"
+        android:textColor="@color/font_color_white"
+        android:textSize="32dp"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
+        app:layout_constraintLeft_toRightOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="45dp"
+        android:text="本地存储"
+        android:textColor="@color/font_color_white"
+        android:textSize="30dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/btnBack"
+        app:layout_constraintRight_toLeftOf="@id/tvCapacity" />
+
+    <TextView
+        android:id="@+id/tvCapacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:text="79G/128G"
+        android:textColor="@color/font_color_white"
+        android:textSize="30dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/btnBack"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <View
+        android:id="@+id/dividerLine1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginRight="60dp"
+        android:background="@color/public_divider"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clLocal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/clAction"
+        app:layout_constraintTop_toBottomOf="@id/dividerLine1">
+
+        <TextView
+            android:id="@+id/tvLocalPath"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="本地"
+            android:textColor="@color/font_color_white"
+            android:textSize="34dp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/cbLocalCheckAll"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/cbLocalCheckAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
+            android:button="@drawable/filemanagement_checkbox"
+            android:paddingLeft="9dp"
+            android:text="全选"
+            android:textColor="@color/font_color_white"
+            android:textSize="34dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tvLocalPath"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <Button
+            android:id="@+id/btnLocalFileBack"
+            android:layout_width="250dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="51dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/filemanagement_public_button"
+            android:text="返回上一级"
+            android:textColor="@color/font_color_white"
+            android:textSize="32dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLocalPath" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLocalFile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="55dp"
+            android:fadeScrollbars="false"
+            android:scrollbarSize="3dp"
+            android:scrollbarStyle="insideOverlay"
+            android:scrollbarThumbVertical="@drawable/filemanagement_scrollbar_front"
+            android:scrollbarTrackVertical="@color/scroll_bar_bg"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnLocalFileBack"
+            app:layout_constraintVertical_bias="0.0"
+            tools:itemCount="10"
+            tools:layout_editor_absoluteX="0dp"
+            tools:listitem="@layout/item_file_list" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clAction"
+        android:layout_width="140dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/clLocal"
+        app:layout_constraintRight_toLeftOf="@id/flUSB"
+        app:layout_constraintTop_toTopOf="@id/clLocal">
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:text="刷新"
+            android:textColor="@drawable/filemanagement_text_button_bg"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@id/btnCopyIn"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnCopyIn"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/filemanagement_selector_copy_in"
+            android:text="左箭头"
+            app:layout_constraintBottom_toTopOf="@id/btnCopyOut"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnRefresh" />
+
+        <Button
+            android:id="@+id/btnCopyOut"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/filemanagement_selector_copy_in"
+            android:text="右箭头"
+            app:layout_constraintBottom_toTopOf="@id/btnDelete"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCopyIn" />
+
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/filemanagement_selector_copy_in"
+            android:text="删除"
+            app:layout_constraintBottom_toTopOf="@id/btnCancel"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCopyOut" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:textColor="@color/font_color_white"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnDelete" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="127dp"
+            android:background="@color/public_divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/flUSB"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/clAction"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/clLocal">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clUSB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tvUsbPath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="44dp"
+                android:layout_marginTop="25dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="USB>新建文件夹>素材"
+                android:textColor="@color/font_color_white"
+                android:textSize="34dp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/cbUSBCheckAll"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <CheckBox
+                android:id="@+id/cbUSBCheckAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="80dp"
+                android:button="@drawable/filemanagement_checkbox"
+                android:paddingLeft="9dp"
+                android:text="全选"
+                android:textColor="@color/font_color_white"
+                android:textSize="34dp"
+                app:layout_constraintBaseline_toBaselineOf="@id/tvUsbPath"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <Button
+                android:id="@+id/btnUSBFileBack"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="51dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="28dp"
+                android:background="@drawable/filemanagement_public_button"
+                android:text="返回上一级"
+                android:textColor="@color/font_color_white"
+                android:textSize="32dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUsbPath" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvUSBFile"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="55dp"
+                android:fadeScrollbars="false"
+                android:scrollbarSize="3dp"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbarThumbVertical="@drawable/filemanagement_scrollbar_front"
+                android:scrollbarTrackVertical="@color/scroll_bar_bg"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnUSBFileBack"
+                tools:itemCount="10"
+                tools:listitem="@layout/item_file_list" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clNoUSB"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_dir"
+                app:layout_constraintBottom_toTopOf="@id/tvNoUSB"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <TextView
+                android:id="@+id/tvNoUSB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="外接存储设备未连接！"
+                android:textColor="@color/font_color_white"
+                android:textSize="40dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

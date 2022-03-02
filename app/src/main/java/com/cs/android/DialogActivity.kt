@@ -145,7 +145,7 @@ class DialogActivity : BaseActivity() {
             .setCancelable(false)
             .show()
 
-        view.btnCancel.setOnClickListener {
+        view.tvCancel.setOnClickListener {
             toast("取消")
             dialog.cancel()
         }

@@ -27,7 +27,7 @@
         path="Download" />
 
     <!-- 注意，FileProvider 没有对外置SD卡公共目录的支持，通过这个标签可以正常实现，但是AS报警告说不要这样做，目前没找到更好的解决办法   -->
-<!--    <root-path-->
-<!--        name="name"-->
-<!--        path="" />-->
+    <root-path
+        name="name"
+        path="" />
 </paths>

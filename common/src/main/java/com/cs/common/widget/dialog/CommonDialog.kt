@@ -13,7 +13,7 @@ import androidx.annotation.DrawableRes
 import com.cs.common.R
 import com.cs.common.utils.screenWidth
 import com.cs.common.utils.setOnValidClickListener
-import kotlinx.android.synthetic.main.dialog_common.btnCancel
+import kotlinx.android.synthetic.main.dialog_common.tvCancel
 import kotlinx.android.synthetic.main.dialog_common.btnConfirm
 import kotlinx.android.synthetic.main.dialog_common.divider
 import kotlinx.android.synthetic.main.dialog_common.tvMessage
@@ -46,14 +46,14 @@ class CommonDialog(
             onConfirm()
         }
 
-        btnCancel.text = cancelText
-        btnCancel.setOnClickListener {
+        tvCancel.text = cancelText
+        tvCancel.setOnClickListener {
             dismiss()
             onCancel?.invoke()
         }
 
         if (type == Type.ALTER) {
-            btnCancel.visibility = View.GONE
+            tvCancel.visibility = View.GONE
             divider.visibility = View.GONE
         }
 
@@ -102,14 +102,14 @@ class PicDialog(
             onConfirm()
         }
 
-        btnCancel.text = cancelText
-        btnCancel.setOnValidClickListener {
+        tvCancel.text = cancelText
+        tvCancel.setOnValidClickListener {
             dismiss()
             onCancel?.invoke()
         }
 
         if (type == Type.ALTER) {
-            btnCancel.visibility = View.GONE
+            tvCancel.visibility = View.GONE
             divider.visibility = View.GONE
         }
 

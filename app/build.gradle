@@ -114,6 +114,12 @@ dependencies {
     // ZXing
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
+    // USB
+    implementation 'me.jahnen:libaums:0.8.0'
+
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+
+
 
     testImplementation 'junit:junit:4.13.2'
 
